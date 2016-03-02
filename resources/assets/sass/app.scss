@@ -1,2 +1,15 @@
-// @import "node_modules/bootstrap-sass/assets/stylesheets/bootstrap";
+$main-color: #5C9530;
+$panel-bg: #CDDFBF;
+$btn-success-bg: #AA8338;
 
+.navbar.navbar-default {
+  background-color: $main-color;
+}
+
+.page-header {
+  margin: 20px;
+}
+
+.btn.btn-raised.btn-success {
+  background-color: $btn-success-bg;
+}

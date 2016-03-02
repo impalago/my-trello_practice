@@ -1,0 +1,1 @@
+{"version":3,"sources":["common.js"],"names":[],"mappings":"AAAA;AACA;AACA;AACA","file":"app.js","sourcesContent":["/**\n *  Initialize the material design\n */\n$.material.init();"],"sourceRoot":"/source/"}
