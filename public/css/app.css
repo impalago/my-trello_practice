@@ -27,18 +27,18 @@
   transition: all 0.3s ease; }
   .board-item__cart i {
     color: #ff5722;
-    font-size: 17px; }
+    font-size: 19px; }
 
 .board-item__update {
   position: absolute;
   top: -25px;
-  right: 15px;
+  right: 20px;
   border: none;
   background: none;
   transition: all 0.3s ease; }
   .board-item__update i {
     color: #CDDFBF;
-    font-size: 17px; }
+    font-size: 19px; }
 
 .board-item .alert {
   position: relative;
@@ -50,6 +50,6 @@
     .board-item .alert:hover button:nth-child(1) {
       top: 2px; }
     .board-item .alert:hover button:nth-child(2) {
-      right: -5px; }
+      right: 0; }
 
 /*# sourceMappingURL=app.css.map */

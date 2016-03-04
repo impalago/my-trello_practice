@@ -49,8 +49,6 @@ angular.module('app').controller('boardsCtrl', function($scope, boardsFactory, $
                 $scope.formTitle = 'Edit board';
                 boardsFactory.editBoard(id)
                     .then(function(rec) {
-                        var currentBoard = angular.element(document.querySelector('#board_name'));
-                        currentBoard.val(rec.name);
                         $scope.boardSubmit = function() {
                             if($scope.boardForm.$valid) {
                                 boardsFactory.updateBoard(id, $scope.board)
