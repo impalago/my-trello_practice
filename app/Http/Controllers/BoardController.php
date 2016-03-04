@@ -19,7 +19,7 @@ class BoardController extends Controller
     public function index()
     {
         $userId = Auth::user()->id;
-        $boards = Board::where('user_id', $userId)->get();
+        $boards = Board::where('user_id', $userId)->orderBy('order', 'asc')->get();
         return response()->json($boards);
     }
 
@@ -67,7 +67,8 @@ class BoardController extends Controller
      */
     public function edit($id)
     {
-        //
+        $board = Board::where('status', 1)->firstOrFail();
+        return response()->json($board);
     }
 
     /**
@@ -79,7 +80,9 @@ class BoardController extends Controller
      */
     public function update(Request $request, $id)
     {
-        //
+        $board = Board::find($id);
+        $board->name = $request->name;
+        $board->save();
     }
 
     /**
@@ -90,6 +93,6 @@ class BoardController extends Controller
      */
     public function destroy($id)
     {
-        //
+        return Board::destroy($id);
     }
 }

@@ -11,6 +11,7 @@
     "bootstrap-material-design": "^0.5.8",
     "bootstrap-sass": "^3.0.0",
     "jquery": "^2.2.0",
+    "jquery-confirm": "^1.5.1",
     "laravel-elixir": "^4.0.0"
   }
 }

@@ -30,10 +30,36 @@ angular.module('app').factory('boardsFactory', function($http, $q) {
         return defer.promise;
     };
 
+    board.editBoard = function(id) {
+        var defer = $q.defer();
+        $http.get('/api/boards/' + id + '/edit')
+            .success(function(rec) {
+                defer.resolve(rec);
+            })
+            .error(function(err, status) {
+                defer.reject(err);
+            });
+
+        return defer.promise;
+    };
+
+    board.updateBoard = function(id, board) {
+        var defer = $q.defer();
+        $http.put('/api/boards/' + id, board)
+            .success(function(rec) {
+                defer.resolve(rec);
+            })
+            .error(function(err, status) {
+                defer.reject(err);
+            });
+
+        return defer.promise;
+    };
+
     board.deleteBoard = function(id) {
         var defer = $q.defer();
 
-        $http.delete('/api/boards/destroy/' + id)
+        $http.delete('/api/boards/' + id)
             .success(function(rec) {
                 defer.resolve(rec);
             })

@@ -9,11 +9,11 @@
                 <h1>Boards</h1>
             </div>
 
-            <div id="board_list" class="container-fluid" ng-controller="boardsCtrl">
+            <div id="board_list" class="container-fluid" data-ng-controller="boardsCtrl">
 
                 <div class="row">
                     <div class="col-md-12">
-                        <button type="button" class="btn btn-raised btn-success btn-lg" data-ng-click="createBoard()">Create board</button>
+                        <button type="button" class="btn btn-raised btn-success btn-lg" data-ng-click="createBoard()">Create new board ...</button>
                     </div>
                 </div>
 

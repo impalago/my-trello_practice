@@ -1,3 +1,5 @@
+@import url('https://fonts.googleapis.com/icon?family=Material+Icons');
+
 $main-color: #5C9530;
 $panel-bg: #CDDFBF;
 $btn-success-bg: #AA8338;
@@ -20,4 +22,54 @@ $btn-success-bg: #AA8338;
 
 .page-header {
   border-color: #8a6d3b;
+}
+
+.board-item {
+
+    &__title {
+      font-size: 18px;
+      position: relative;
+    }
+
+    &__cart {
+      position: absolute;
+      top: 2px;
+      right: -25px;
+      border: none;
+      background: none;
+      transition: all 0.3s ease;
+        & i {
+          color: #ff5722;
+          font-size: 17px;
+        }
+    }
+
+    &__update {
+      position: absolute;
+      top: -25px;
+      right: 15px;
+      border: none;
+      background: none;
+      transition: all 0.3s ease;
+      & i {
+        color: #CDDFBF;
+        font-size: 17px;
+      }
+    }
+    .alert {
+      position: relative;
+      cursor: pointer;
+      overflow: hidden;
+      transition: all 0.5s ease;
+      &:hover {
+        box-shadow: 0 0 5px #1e1e1e;
+        button:nth-child(1) {
+          top:2px;
+        }
+        button:nth-child(2) {
+          right:-5px;
+        }
+      }
+
+    }
 }

@@ -1,3 +1,4 @@
+@import url("https://fonts.googleapis.com/icon?family=Material+Icons");
 .navbar.navbar-default {
   background-color: #5C9530; }
 
@@ -12,5 +13,43 @@
 
 .page-header {
   border-color: #8a6d3b; }
+
+.board-item__title {
+  font-size: 18px;
+  position: relative; }
+
+.board-item__cart {
+  position: absolute;
+  top: 2px;
+  right: -25px;
+  border: none;
+  background: none;
+  transition: all 0.3s ease; }
+  .board-item__cart i {
+    color: #ff5722;
+    font-size: 17px; }
+
+.board-item__update {
+  position: absolute;
+  top: -25px;
+  right: 15px;
+  border: none;
+  background: none;
+  transition: all 0.3s ease; }
+  .board-item__update i {
+    color: #CDDFBF;
+    font-size: 17px; }
+
+.board-item .alert {
+  position: relative;
+  cursor: pointer;
+  overflow: hidden;
+  transition: all 0.5s ease; }
+  .board-item .alert:hover {
+    box-shadow: 0 0 5px #1e1e1e; }
+    .board-item .alert:hover button:nth-child(1) {
+      top: 2px; }
+    .board-item .alert:hover button:nth-child(2) {
+      right: -5px; }
 
 /*# sourceMappingURL=app.css.map */
