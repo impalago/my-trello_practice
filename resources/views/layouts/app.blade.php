@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="en" ng-app="app">
 <head>
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
@@ -10,9 +10,9 @@
     <link rel="stylesheet" href="/css/dependencies.css">
     <link rel="stylesheet" href="/css/app.css">
 </head>
-<body id="app-layout">
+<body id="app-layout" ng-cloak>
     <nav class="navbar navbar-default">
-        <div class="container">
+        <div class="container-fluid">
             <div class="navbar-header">
 
                 <!-- Collapsed Hamburger -->

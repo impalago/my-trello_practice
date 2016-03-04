@@ -13,3 +13,11 @@ $btn-success-bg: #AA8338;
 .btn.btn-raised.btn-success {
   background-color: $btn-success-bg;
 }
+
+[ng\:cloak], [ng-cloak], [data-ng-cloak], [x-ng-cloak], .ng-cloak, .x-ng-cloak {
+  display: none;
+}
+
+.page-header {
+  border-color: #8a6d3b;
+}

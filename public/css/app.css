@@ -7,4 +7,10 @@
 .btn.btn-raised.btn-success {
   background-color: #AA8338; }
 
+[ng\:cloak], [ng-cloak], [data-ng-cloak], [x-ng-cloak], .ng-cloak, .x-ng-cloak {
+  display: none; }
+
+.page-header {
+  border-color: #8a6d3b; }
+
 /*# sourceMappingURL=app.css.map */
