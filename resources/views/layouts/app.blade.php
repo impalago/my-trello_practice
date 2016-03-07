@@ -32,7 +32,7 @@
             <div class="collapse navbar-collapse" id="app-navbar-collapse">
                 <!-- Left Side Of Navbar -->
                 <ul class="nav navbar-nav">
-                    <li><a href="{{ url('/home') }}">Home</a></li>
+                    <li><a href="/#/boards">Boards</a></li>
                 </ul>
 
                 <!-- Right Side Of Navbar -->
@@ -57,7 +57,7 @@
         </div>
     </nav>
 
-    @yield('content')
+    <div ng-view></div>
 
     <script src="/js/dependencies.js"></script>
     <script src="/js/app.js"></script>

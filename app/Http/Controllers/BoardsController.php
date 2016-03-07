@@ -9,7 +9,7 @@ use App\Http\Requests;
 use App\Http\Controllers\Controller;
 use Illuminate\Support\Facades\Auth;
 
-class BoardController extends Controller
+class BoardsController extends Controller
 {
     /**
      * Display a listing of the resource.
@@ -67,7 +67,7 @@ class BoardController extends Controller
      */
     public function edit($id)
     {
-        $board = Board::where('status', 1)->firstOrFail();
+        $board = Board::where('id', $id)->where('status', 1)->firstOrFail();
         return response()->json($board);
     }
 

@@ -26,6 +26,18 @@ $btn-success-bg: #AA8338;
 
 .board-item {
 
+    a {
+      position: absolute;
+      width: 100%;
+      height: 100%;
+      top: 0;
+      left: 0;
+
+      &:hover {
+        text-decoration: none;
+      }
+    }
+
     &__title {
       font-size: 18px;
       position: relative;
@@ -37,6 +49,7 @@ $btn-success-bg: #AA8338;
       right: -25px;
       border: none;
       background: none;
+      z-index: 10;
       transition: all 0.3s ease;
         & i {
           color: #ff5722;
@@ -50,6 +63,7 @@ $btn-success-bg: #AA8338;
       right: 20px;
       border: none;
       background: none;
+      z-index: 10;
       transition: all 0.3s ease;
       & i {
         color: #CDDFBF;

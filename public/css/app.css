@@ -14,6 +14,15 @@
 .page-header {
   border-color: #8a6d3b; }
 
+.board-item a {
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  top: 0;
+  left: 0; }
+  .board-item a:hover {
+    text-decoration: none; }
+
 .board-item__title {
   font-size: 18px;
   position: relative; }
@@ -24,6 +33,7 @@
   right: -25px;
   border: none;
   background: none;
+  z-index: 10;
   transition: all 0.3s ease; }
   .board-item__cart i {
     color: #ff5722;
@@ -35,6 +45,7 @@
   right: 20px;
   border: none;
   background: none;
+  z-index: 10;
   transition: all 0.3s ease; }
   .board-item__update i {
     color: #CDDFBF;

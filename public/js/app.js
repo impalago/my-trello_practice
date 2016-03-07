@@ -1,8 +1,28 @@
-angular.module('app', ['ui.bootstrap']);
+angular.module('app', ['ngRoute','ui.bootstrap']);
 /**
  *  Initialize the material design
  */
 $.material.init();
+angular.module('app').config(function($routeProvider) {
+
+    $routeProvider
+
+        .when('/boards', {
+            templateUrl: '/api/boards-main',
+            controller: 'boardsCtrl'
+        })
+
+        .when('/boards/:id', {
+            templateUrl: '/api/boards-item',
+            controller: 'boardItemCtrl'
+        });
+
+});
+
+angular.module('app').controller('boardItemCtrl', function($scope, $uibModal, boardItemFactory) {
+    console.log('boardItemCtrl');
+});
+
 angular.module('app').controller('boardsCtrl', function($scope, boardsFactory, $uibModal) {
 
     $scope.init = function() {
@@ -16,8 +36,6 @@ angular.module('app').controller('boardsCtrl', function($scope, boardsFactory, $
         boardsFactory.getBoards()
             .then(function(rec) {
                 $scope.boards = boardsFactory.boardList;
-            }, function(err) {
-                // error
             });
     };
 
@@ -42,8 +60,6 @@ angular.module('app').controller('boardsCtrl', function($scope, boardsFactory, $
 
         modalInstance.result.then(function() {
             $scope.allBoards();
-        }, function() {
-            // error
         });
     };
 
@@ -54,6 +70,8 @@ angular.module('app').controller('boardsCtrl', function($scope, boardsFactory, $
                 $scope.formTitle = 'Edit board';
                 boardsFactory.editBoard(id)
                     .then(function(rec) {
+
+                        $scope.boardName = rec.name;
                         $scope.boardSubmit = function() {
                             if($scope.boardForm.$valid) {
                                 boardsFactory.updateBoard(id, $scope.board)
@@ -62,6 +80,7 @@ angular.module('app').controller('boardsCtrl', function($scope, boardsFactory, $
                                     });
                             }
                         };
+
                     });
 
                 $scope.cancel = function() {
@@ -72,8 +91,6 @@ angular.module('app').controller('boardsCtrl', function($scope, boardsFactory, $
 
         modalInstance.result.then(function() {
             $scope.allBoards();
-        }, function() {
-            // error
         });
     };
 
@@ -85,14 +102,15 @@ angular.module('app').controller('boardsCtrl', function($scope, boardsFactory, $
                 boardsFactory.deleteBoard(id)
                     .then(function(rec) {
                         $scope.allBoards();
-                    }, function(err) {
-                        // error
                     });
             }
         });
     };
 
     $scope.init();
+});
+angular.module('app').factory('boardItemFactory', function($http, $q) {
+    return {};
 });
 angular.module('app').factory('boardsFactory', function($http, $q) {
 

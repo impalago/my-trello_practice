@@ -11,8 +11,6 @@ angular.module('app').controller('boardsCtrl', function($scope, boardsFactory, $
         boardsFactory.getBoards()
             .then(function(rec) {
                 $scope.boards = boardsFactory.boardList;
-            }, function(err) {
-                // error
             });
     };
 
@@ -37,8 +35,6 @@ angular.module('app').controller('boardsCtrl', function($scope, boardsFactory, $
 
         modalInstance.result.then(function() {
             $scope.allBoards();
-        }, function() {
-            // error
         });
     };
 
@@ -49,6 +45,8 @@ angular.module('app').controller('boardsCtrl', function($scope, boardsFactory, $
                 $scope.formTitle = 'Edit board';
                 boardsFactory.editBoard(id)
                     .then(function(rec) {
+
+                        $scope.boardName = rec.name;
                         $scope.boardSubmit = function() {
                             if($scope.boardForm.$valid) {
                                 boardsFactory.updateBoard(id, $scope.board)
@@ -57,6 +55,7 @@ angular.module('app').controller('boardsCtrl', function($scope, boardsFactory, $
                                     });
                             }
                         };
+
                     });
 
                 $scope.cancel = function() {
@@ -67,8 +66,6 @@ angular.module('app').controller('boardsCtrl', function($scope, boardsFactory, $
 
         modalInstance.result.then(function() {
             $scope.allBoards();
-        }, function() {
-            // error
         });
     };
 
@@ -80,8 +77,6 @@ angular.module('app').controller('boardsCtrl', function($scope, boardsFactory, $
                 boardsFactory.deleteBoard(id)
                     .then(function(rec) {
                         $scope.allBoards();
-                    }, function(err) {
-                        // error
                     });
             }
         });

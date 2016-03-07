@@ -25,10 +25,23 @@ Route::group(['middleware' => ['web', 'auth']], function () {
 });
 
 Route::group(['middleware' => ['web', 'auth'], 'prefix' => 'api'], function () {
-    Route::resource('boards', 'BoardController');
+    Route::resource('boards', 'BoardsController', ['except' => [
+        'create'
+    ]]);
 
     // Templates
-    Route::get('boards-create-form', function() {
-        return view('app_blocks/board.board-create-form');
+
+    // Boards
+    Route::get('boards-main', function() {
+        return view('app_blocks/boards.index');
     });
+    Route::get('boards-create-form', function() {
+        return view('app_blocks/boards.board-create-form');
+    });
+
+    // Board item
+    Route::get('boards-item', function() {
+        return view('app_blocks/board-item.index');
+    });
+
 });

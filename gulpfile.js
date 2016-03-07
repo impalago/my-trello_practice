@@ -22,6 +22,8 @@ elixir(function(mix) {
         "/bootstrap-material-design/dist/js/ripples.min.js",
         "/lodash/lodash.min.js",
         "/angular/angular.min.js",
+        "/angular-route/angular-route.min.js",
+        "/angular-resource/angular-resource.min.js",
         "/angular-ui-bootstrap/dist/ui-bootstrap-tpls.js",
         "/jquery-confirm/js/jquery-confirm.min.js"
     ], "public/js/dependencies.js", "node_modules")
