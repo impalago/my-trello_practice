@@ -19,8 +19,17 @@ angular.module('app').config(function($routeProvider) {
 
 });
 
-angular.module('app').controller('boardItemCtrl', function($scope, $uibModal, boardItemFactory) {
-    console.log('boardItemCtrl');
+angular.module('app').controller('boardItemCtrl', function($scope, $uibModal, $routeParams, boardItemFactory) {
+    $scope.init = function() {
+
+    };
+
+     boardItemFactory.getBoardInfo($routeParams.id)
+        .then(function(rec) {
+            $scope.pageName = rec.name;
+        });
+
+    $scope.init();
 });
 
 angular.module('app').controller('boardsCtrl', function($scope, boardsFactory, $uibModal) {
@@ -110,12 +119,27 @@ angular.module('app').controller('boardsCtrl', function($scope, boardsFactory, $
     $scope.init();
 });
 angular.module('app').factory('boardItemFactory', function($http, $q) {
-    return {};
+
+    var board = this;
+
+    board.getBoardInfo = function(id) {
+        var defer = $q.defer();
+        $http.get('/api/boards/' + id)
+            .success(function(rec) {
+                defer.resolve(rec);
+            })
+            .error(function(err) {
+                deref.reject(err);
+            });
+        return defer.promise;
+    };
+
+    return board;
 });
 angular.module('app').factory('boardsFactory', function($http, $q) {
 
     var board = this;
-    board.boardList = {};
+    this.boardList = {};
 
     board.getBoards = function() {
         var defer = $q.defer();

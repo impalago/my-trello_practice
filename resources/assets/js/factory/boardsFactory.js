@@ -1,7 +1,7 @@
 angular.module('app').factory('boardsFactory', function($http, $q) {
 
     var board = this;
-    board.boardList = {};
+    this.boardList = {};
 
     board.getBoards = function() {
         var defer = $q.defer();

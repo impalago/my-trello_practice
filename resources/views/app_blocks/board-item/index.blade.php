@@ -3,7 +3,7 @@
         <div class="col-md-10 col-md-offset-1">
 
             <div class="page-header">
-                <h1>32323</h1>
+                <h1>@{{ pageName }}</h1>
             </div>
 
 

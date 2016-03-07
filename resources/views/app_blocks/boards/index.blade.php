@@ -20,11 +20,11 @@
                             <button type="button" class="board-item__update" data-ng-click="editBoard(board.id)"><i class="material-icons">create</i></button>
                             <button type="button" class="confirm board-item__cart" data-ng-click="deleteBoard(board.id)"><i class="material-icons">delete</i></button>
                             <div class="panel-heading board-item__title">@{{ board.name }} </div>
-                            <a href="/#/boards/@{{ board.id }}"></a>
+                            <a data-ng-href="#/boards/@{{ board.id }}"></a>
                         </div>
                     </div>
                 </div>
-                
+
             </div>
         </div>
     </div>
