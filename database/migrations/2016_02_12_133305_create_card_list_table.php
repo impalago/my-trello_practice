@@ -16,6 +16,7 @@ class CreateCardListTable extends Migration
             $table->increments('id');
             $table->integer('board_id')->unsigned();
             $table->string('name');
+            $table->string('color');
             $table->timestamps();
         });
 

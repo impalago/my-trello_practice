@@ -57,6 +57,7 @@
         </div>
     </nav>
 
+    @yield('content')
     <div ng-view></div>
 
     <script src="/js/dependencies.js"></script>

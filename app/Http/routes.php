@@ -28,6 +28,9 @@ Route::group(['middleware' => ['web', 'auth'], 'prefix' => 'api'], function () {
     Route::resource('boards', 'BoardsController', ['except' => [
         'create'
     ]]);
+    Route::resource('card-list', 'CardListController', ['except' => [
+        'create'
+    ]]);
 
     // Templates
 
@@ -43,5 +46,11 @@ Route::group(['middleware' => ['web', 'auth'], 'prefix' => 'api'], function () {
     Route::get('boards-item', function() {
         return view('app_blocks/board-item.index');
     });
+
+    // Card list
+    Route::get('card-list-create-form', function() {
+        return view('app_blocks/card-list.card-list-form');
+    });
+
 
 });

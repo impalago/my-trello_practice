@@ -63,4 +63,33 @@
     .board-item .alert:hover button:nth-child(2) {
       right: 0; }
 
+.card-list-item .panel-heading {
+  position: relative; }
+
+.card-list-item__update {
+  position: absolute;
+  top: 8px;
+  right: 23px;
+  border: none;
+  background: none;
+  z-index: 10;
+  transition: all 0.3s ease; }
+  .card-list-item__update i {
+    color: #CDDFBF;
+    font-size: 19px;
+    text-shadow: 0 0 1px #000; }
+
+.card-list-item__delete {
+  position: absolute;
+  top: 8px;
+  right: 0;
+  border: none;
+  background: none;
+  z-index: 10;
+  transition: all 0.3s ease; }
+  .card-list-item__delete i {
+    color: #ff5722;
+    font-size: 19px;
+    text-shadow: 0 0 1px #000; }
+
 /*# sourceMappingURL=app.css.map */

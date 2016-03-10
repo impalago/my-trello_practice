@@ -25,6 +25,7 @@ elixir(function(mix) {
         "/angular-route/angular-route.min.js",
         "/angular-resource/angular-resource.min.js",
         "/angular-ui-bootstrap/dist/ui-bootstrap-tpls.js",
+        "/angular-bootstrap-colorpicker/js/bootstrap-colorpicker-module.min.js",
         "/jquery-confirm/js/jquery-confirm.min.js"
     ], "public/js/dependencies.js", "node_modules")
     .scriptsIn("resources/assets/js", "public/js/app.js")
@@ -34,6 +35,7 @@ elixir(function(mix) {
         "/bootstrap-material-design/dist/css/bootstrap-material-design.min.css",
         "/bootstrap-material-design/dist/css/ripples.min.css",
         "/angular-ui-bootstrap/dist/ui-bootstrap-csp.css",
+        "/angular-bootstrap-colorpicker/css/colorpicker.min.css",
         "/jquery-confirm/css/jquery-confirm.css"
     ], 'public/css/dependencies.css', 'node_modules')
     .sass('app.scss')

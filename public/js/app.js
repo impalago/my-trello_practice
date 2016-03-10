@@ -1,4 +1,4 @@
-angular.module('app', ['ngRoute','ui.bootstrap']);
+angular.module('app', ['ngRoute', 'ui.bootstrap', 'colorpicker.module']);
 /**
  *  Initialize the material design
  */
@@ -118,6 +118,97 @@ angular.module('app').controller('boardsCtrl', function($scope, boardsFactory, $
 
     $scope.init();
 });
+angular.module('app').controller('cardListCtrl', function($scope, $uibModal, $routeParams, cardListFactory) {
+
+    var $self = this;
+    $scope.init = function() {
+        $scope.cardList();
+    };
+
+    $scope.cardList = function() {
+        cardListFactory.getAllCardList()
+            .then(function(rec) {
+                $self.allCardList = rec;
+            });
+    };
+
+    $self.createCardList = function() {
+        var modalInstance = $uibModal.open({
+            templateUrl: '/api/card-list-create-form',
+            controller: function($scope, $uibModalInstance) {
+                $scope.formTitle = 'Create card list';
+                $scope.cardListSubmit = function() {
+                    if($scope.cardListForm.$valid) {
+                        $scope.cardListFields.board_id = $routeParams.id;
+                        cardListFactory.createCardList($scope.cardListFields)
+                            .then(function() {
+                                $uibModalInstance.close();
+                            });
+                    }
+                };
+                $scope.cancel = function() {
+                    $uibModalInstance.dismiss('cancel');
+                };
+            }
+        });
+
+        modalInstance.result.then(function() {
+            $scope.cardList();
+        });
+    };
+
+    $self.editCardList = function(id) {
+        var modalInstance = $uibModal.open({
+            templateUrl: '/api/card-list-create-form',
+            controller: function($scope, $uibModalInstance) {
+                $scope.formTitle = 'Edit card list';
+                cardListFactory.editCardList(id)
+                    .then(function(rec) {
+                        $scope.cardListFields = { name: '', color: '' };
+                        $scope.cardListName = rec.name;
+                        $scope.colorcardListColor = rec.color;
+                        $scope.cardListSubmit = function() {
+                            if($scope.cardListFields.name != rec.name || $scope.cardListFields.color) {
+                                $scope.cardListFields.board_id = $routeParams.id;
+                                $scope.cardListFields.name = !$scope.cardListFields.name ? rec.name : $scope.cardListFields.name;
+                                $scope.cardListFields.color = !$scope.cardListFields.color ? rec.color : $scope.cardListFields.color;
+                                cardListFactory.updateCardList(id, $scope.cardListFields)
+                                    .then(function() {
+                                        modalInstance.close();
+                                    });
+                            } else {
+                                $uibModalInstance.dismiss('cancel');
+                            }
+                        };
+
+                    });
+
+                $scope.cancel = function() {
+                    $uibModalInstance.dismiss('cancel');
+                };
+            }
+        });
+
+        modalInstance.result.then(function() {
+            $scope.cardList();
+        });
+    };
+
+    $self.deleteCardList = function(id) {
+        $.confirm({
+            title: 'Are you sure?',
+            confirm: function(){
+                cardListFactory.deleteCardList(id)
+                    .then(function(rec) {
+                        $scope.cardList();
+                    });
+            }
+        });
+    };
+
+
+    $scope.init();
+});
 angular.module('app').factory('boardItemFactory', function($http, $q) {
 
     var board = this;
@@ -209,5 +300,80 @@ angular.module('app').factory('boardsFactory', function($http, $q) {
     };
 
     return board;
+});
+angular.module('app').factory('cardListFactory', function($http, $q, $routeParams) {
+    var cardList = {};
+
+    cardList.getAllCardList = function() {
+        var defer = $q.defer();
+        $http.get('/api/card-list', {
+            params: {
+                board_id: $routeParams.id
+            }
+        })
+            .success(function(rec) {
+                defer.resolve(rec);
+            })
+            .error(function(err, status) {
+                defer.reject(err);
+            });
+
+        return defer.promise;
+    };
+
+    cardList.createCardList = function(cardList) {
+        var defer = $q.defer();
+        $http.post('/api/card-list', cardList)
+            .success(function(rec) {
+                defer.resolve(rec);
+            })
+            .error(function(err, status) {
+                defer.reject(err);
+            });
+
+        return defer.promise;
+    };
+
+    cardList.editCardList = function(id) {
+        var defer = $q.defer();
+        $http.get('/api/card-list/' + id + '/edit')
+            .success(function(rec) {
+                defer.resolve(rec);
+            })
+            .error(function(err, status) {
+                defer.reject(err);
+            });
+
+        return defer.promise;
+    };
+
+    cardList.updateCardList = function(id, cardList) {
+        var defer = $q.defer();
+        $http.put('/api/card-list/' + id, cardList)
+            .success(function(rec) {
+                defer.resolve(rec);
+            })
+            .error(function(err, status) {
+                defer.reject(err);
+            });
+
+        return defer.promise;
+    };
+
+    cardList.deleteCardList = function(id) {
+        var defer = $q.defer();
+
+        $http.delete('/api/card-list/' + id)
+            .success(function(rec) {
+                defer.resolve(rec);
+            })
+            .error(function(err, status) {
+                defer.reject(err);
+            });
+
+        return defer.promise;
+    };
+
+    return cardList;
 });
 //# sourceMappingURL=app.js.map
