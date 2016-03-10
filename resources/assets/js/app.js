@@ -1,1 +1,1 @@
-angular.module('app', ['ngRoute', 'ui.bootstrap', 'colorpicker.module']);
+angular.module('app', ['ngRoute', 'ui.bootstrap', 'colorpicker.module', 'ngDragDrop']);

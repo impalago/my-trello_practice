@@ -26,6 +26,7 @@ elixir(function(mix) {
         "/angular-resource/angular-resource.min.js",
         "/angular-ui-bootstrap/dist/ui-bootstrap-tpls.js",
         "/angular-bootstrap-colorpicker/js/bootstrap-colorpicker-module.min.js",
+        "/angular-dragdrop/src/angular-dragdrop.min.js",
         "/jquery-confirm/js/jquery-confirm.min.js"
     ], "public/js/dependencies.js", "node_modules")
     .scriptsIn("resources/assets/js", "public/js/app.js")

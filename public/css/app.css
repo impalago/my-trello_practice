@@ -64,7 +64,8 @@
       right: 0; }
 
 .card-list-item .panel-heading {
-  position: relative; }
+  position: relative;
+  text-shadow: 1px 1px 1px #505050; }
 
 .card-list-item__update {
   position: absolute;
