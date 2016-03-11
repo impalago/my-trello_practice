@@ -1,4 +1,4 @@
-<div class="container-fluid">
+<div class="container-fluid fadein fadeout" data-ng-hide="fakeIntro">
     <div class="row">
         <div class="col-md-10 col-md-offset-1">
 

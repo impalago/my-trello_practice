@@ -1,14 +1,27 @@
-angular.module('app').controller('cardListCtrl', function($scope, $uibModal, $routeParams, cardListFactory) {
+angular.module('app').controller('cardListCtrl', function($scope, $uibModal, $routeParams, cardListFactory, cfpLoadingBar) {
 
     var $self = this;
     $scope.init = function() {
         $scope.cardList();
+
+        $scope.loadStart = function() {
+            cfpLoadingBar.start();
+        };
+
+        $scope.loadComplete = function () {
+            cfpLoadingBar.complete();
+        };
+
+        $scope.loadStart();
+        $scope.fakeIntro = true;
     };
 
     $scope.cardList = function() {
         cardListFactory.getAllCardList()
             .then(function(rec) {
                 $self.allCardList = rec;
+                $scope.loadComplete();
+                $scope.fakeIntro = false;
             });
     };
 
@@ -85,31 +98,6 @@ angular.module('app').controller('cardListCtrl', function($scope, $uibModal, $ro
             }
         });
     };
-
-    $self.dragoverCallback = function(event, index, external, type) {
-        console.log(index);
-    };
-
-    $self.dropCallback = function(event, index, item, external, type, allowedType) {
-        $scope.logListEvent('dropped at', event, index, external, type);
-        if (external) {
-            if (allowedType === 'itemType' && !item.label) return false;
-            if (allowedType === 'containerType' && !angular.isArray(item)) return false;
-        }
-        return item;
-    };
-
-    $self.logEvent = function(message, event) {
-        console.log(message, '(triggered by the following', event.type, 'event)');
-        console.log(event);
-    };
-
-    $scope.logListEvent = function(action, event, index, external, type) {
-        var message = external ? 'External ' : '';
-        message += type + ' element is ' + action + ' position ' + index;
-        $scope.logEvent(message, event);
-    };
-
 
     $scope.init();
 });

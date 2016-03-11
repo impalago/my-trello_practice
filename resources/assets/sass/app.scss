@@ -17,7 +17,7 @@ $btn-success-bg: #AA8338;
 }
 
 [ng\:cloak], [ng-cloak], [data-ng-cloak], [x-ng-cloak], .ng-cloak, .x-ng-cloak {
-  display: none;
+  display: none !important;
 }
 
 .page-header {
@@ -91,6 +91,7 @@ $btn-success-bg: #AA8338;
   .panel-heading {
     position: relative;
     text-shadow: 1px 1px 1px #505050;
+    color: #fff8e1;
   }
 
   &__update {
@@ -122,5 +123,34 @@ $btn-success-bg: #AA8338;
       text-shadow: 0 0 1px #000;
     }
   }
+}
 
+#loading-bar .bar {
+  background: #f44336;
+  height: 3px;
+}
+
+#loading-bar-spinner .spinner-icon {
+  border-top-color: #f44336;
+  border-left-color: #f44336;
+}
+
+.fadein,
+.fadeout {
+  -webkit-transition:all cubic-bezier(0.250, 0.460, 0.450, 0.940) 0.5s;
+  -moz-transition:all cubic-bezier(0.250, 0.460, 0.450, 0.940) 0.5s;
+  -o-transition:all cubic-bezier(0.250, 0.460, 0.450, 0.940) 0.5s;
+  transition:all cubic-bezier(0.250, 0.460, 0.450, 0.940) 0.5s;
+}
+
+.fadein.ng-hide-remove,
+.fadeout.ng-hide-add.ng-hide-add-active {
+  opacity: 0;
+  display: block !important;
+}
+
+.fadeout.ng-hide-add,
+.fadein.ng-hide-remove.ng-hide-remove-active {
+  opacity: 1;
+  display: block !important;
 }

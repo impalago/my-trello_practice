@@ -10,7 +10,7 @@
     <link rel="stylesheet" href="/css/dependencies.css">
     <link rel="stylesheet" href="/css/app.css">
 </head>
-<body id="app-layout" ng-cloak>
+<body id="app-layout">
     <nav class="navbar navbar-default">
         <div class="container-fluid">
             <div class="navbar-header">
@@ -43,7 +43,7 @@
                         <li><a href="{{ url('/register') }}">Register</a></li>
                     @else
                         <li class="dropdown">
-                            <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">
+                            <a href="" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">
                                 {{ Auth::user()->name }} <span class="caret"></span>
                             </a>
 

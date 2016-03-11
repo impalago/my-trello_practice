@@ -9,7 +9,7 @@
   background-color: #AA8338; }
 
 [ng\:cloak], [ng-cloak], [data-ng-cloak], [x-ng-cloak], .ng-cloak, .x-ng-cloak {
-  display: none; }
+  display: none !important; }
 
 .page-header {
   border-color: #8a6d3b; }
@@ -65,7 +65,8 @@
 
 .card-list-item .panel-heading {
   position: relative;
-  text-shadow: 1px 1px 1px #505050; }
+  text-shadow: 1px 1px 1px #505050;
+  color: #fff8e1; }
 
 .card-list-item__update {
   position: absolute;
@@ -92,5 +93,27 @@
     color: #ff5722;
     font-size: 19px;
     text-shadow: 0 0 1px #000; }
+
+#loading-bar .bar {
+  background: #f44336;
+  height: 3px; }
+
+#loading-bar-spinner .spinner-icon {
+  border-top-color: #f44336;
+  border-left-color: #f44336; }
+
+.fadein,
+.fadeout {
+  transition: all cubic-bezier(0.25, 0.46, 0.45, 0.94) 0.5s; }
+
+.fadein.ng-hide-remove,
+.fadeout.ng-hide-add.ng-hide-add-active {
+  opacity: 0;
+  display: block !important; }
+
+.fadeout.ng-hide-add,
+.fadein.ng-hide-remove.ng-hide-remove-active {
+  opacity: 1;
+  display: block !important; }
 
 /*# sourceMappingURL=app.css.map */

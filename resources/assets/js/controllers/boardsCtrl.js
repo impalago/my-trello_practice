@@ -1,16 +1,29 @@
-angular.module('app').controller('boardsCtrl', function($scope, boardsFactory, $uibModal) {
+angular.module('app').controller('boardsCtrl', function($scope, boardsFactory, $uibModal, cfpLoadingBar) {
 
     $scope.init = function() {
         $scope.allBoards();
         $scope.board = {
             name: ''
         };
+
+        $scope.loadStart = function() {
+            cfpLoadingBar.start();
+        };
+
+        $scope.loadComplete = function () {
+            cfpLoadingBar.complete();
+        };
+
+        $scope.loadStart();
+        $scope.fakeIntro = true;
     };
 
     $scope.allBoards = function() {
         boardsFactory.getBoards()
             .then(function(rec) {
                 $scope.boards = boardsFactory.boardList;
+                $scope.loadComplete();
+                $scope.fakeIntro = false;
             });
     };
 

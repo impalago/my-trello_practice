@@ -7837,36 +7837,393 @@ angular.module('ui.bootstrap.datepicker').run(function() {!angular.$$csp().noInl
 angular.module('ui.bootstrap.tooltip').run(function() {!angular.$$csp().noInlineStyle && angular.element(document).find('head').prepend('<style type="text/css">[uib-tooltip-popup].tooltip.top-left > .tooltip-arrow,[uib-tooltip-popup].tooltip.top-right > .tooltip-arrow,[uib-tooltip-popup].tooltip.bottom-left > .tooltip-arrow,[uib-tooltip-popup].tooltip.bottom-right > .tooltip-arrow,[uib-tooltip-popup].tooltip.left-top > .tooltip-arrow,[uib-tooltip-popup].tooltip.left-bottom > .tooltip-arrow,[uib-tooltip-popup].tooltip.right-top > .tooltip-arrow,[uib-tooltip-popup].tooltip.right-bottom > .tooltip-arrow,[uib-popover-popup].popover.top-left > .arrow,[uib-popover-popup].popover.top-right > .arrow,[uib-popover-popup].popover.bottom-left > .arrow,[uib-popover-popup].popover.bottom-right > .arrow,[uib-popover-popup].popover.left-top > .arrow,[uib-popover-popup].popover.left-bottom > .arrow,[uib-popover-popup].popover.right-top > .arrow,[uib-popover-popup].popover.right-bottom > .arrow{top:auto;bottom:auto;left:auto;right:auto;margin:0;}[uib-popover-popup].popover,[uib-popover-template-popup].popover{display:block !important;}</style>'); });
 angular.module('ui.bootstrap.timepicker').run(function() {!angular.$$csp().noInlineStyle && angular.element(document).find('head').prepend('<style type="text/css">.uib-time input{width:50px;}</style>'); });
 angular.module('ui.bootstrap.typeahead').run(function() {!angular.$$csp().noInlineStyle && angular.element(document).find('head').prepend('<style type="text/css">[uib-typeahead-popup].dropdown-menu{display:block;}</style>'); });
+/*
+ AngularJS v1.5.0
+ (c) 2010-2016 Google, Inc. http://angularjs.org
+ License: MIT
+*/
+(function(D,r,Va){'use strict';function ya(a,b,c){if(!a)throw Ka("areq",b||"?",c||"required");return a}function za(a,b){if(!a&&!b)return"";if(!a)return b;if(!b)return a;ba(a)&&(a=a.join(" "));ba(b)&&(b=b.join(" "));return a+" "+b}function La(a){var b={};a&&(a.to||a.from)&&(b.to=a.to,b.from=a.from);return b}function X(a,b,c){var d="";a=ba(a)?a:a&&R(a)&&a.length?a.split(/\s+/):[];s(a,function(a,g){a&&0<a.length&&(d+=0<g?" ":"",d+=c?b+a:a+b)});return d}function Ma(a){if(a instanceof I)switch(a.length){case 0:return[];
+case 1:if(1===a[0].nodeType)return a;break;default:return I(oa(a))}if(1===a.nodeType)return I(a)}function oa(a){if(!a[0])return a;for(var b=0;b<a.length;b++){var c=a[b];if(1==c.nodeType)return c}}function Na(a,b,c){s(b,function(b){a.addClass(b,c)})}function Oa(a,b,c){s(b,function(b){a.removeClass(b,c)})}function U(a){return function(b,c){c.addClass&&(Na(a,b,c.addClass),c.addClass=null);c.removeClass&&(Oa(a,b,c.removeClass),c.removeClass=null)}}function ka(a){a=a||{};if(!a.$$prepared){var b=a.domOperation||
+Q;a.domOperation=function(){a.$$domOperationFired=!0;b();b=Q};a.$$prepared=!0}return a}function fa(a,b){Aa(a,b);Ba(a,b)}function Aa(a,b){b.from&&(a.css(b.from),b.from=null)}function Ba(a,b){b.to&&(a.css(b.to),b.to=null)}function V(a,b,c){var d=b.options||{};c=c.options||{};var e=(d.addClass||"")+" "+(c.addClass||""),g=(d.removeClass||"")+" "+(c.removeClass||"");a=Pa(a.attr("class"),e,g);c.preparationClasses&&(d.preparationClasses=ca(c.preparationClasses,d.preparationClasses),delete c.preparationClasses);
+e=d.domOperation!==Q?d.domOperation:null;Ca(d,c);e&&(d.domOperation=e);d.addClass=a.addClass?a.addClass:null;d.removeClass=a.removeClass?a.removeClass:null;b.addClass=d.addClass;b.removeClass=d.removeClass;return d}function Pa(a,b,c){function d(a){R(a)&&(a=a.split(" "));var b={};s(a,function(a){a.length&&(b[a]=!0)});return b}var e={};a=d(a);b=d(b);s(b,function(a,b){e[b]=1});c=d(c);s(c,function(a,b){e[b]=1===e[b]?null:-1});var g={addClass:"",removeClass:""};s(e,function(b,c){var d,e;1===b?(d="addClass",
+e=!a[c]):-1===b&&(d="removeClass",e=a[c]);e&&(g[d].length&&(g[d]+=" "),g[d]+=c)});return g}function G(a){return a instanceof r.element?a[0]:a}function Qa(a,b,c){var d="";b&&(d=X(b,"ng-",!0));c.addClass&&(d=ca(d,X(c.addClass,"-add")));c.removeClass&&(d=ca(d,X(c.removeClass,"-remove")));d.length&&(c.preparationClasses=d,a.addClass(d))}function la(a,b){var c=b?"-"+b+"s":"";ha(a,[ia,c]);return[ia,c]}function pa(a,b){var c=b?"paused":"",d=Y+"PlayState";ha(a,[d,c]);return[d,c]}function ha(a,b){a.style[b[0]]=
+b[1]}function ca(a,b){return a?b?a+" "+b:a:b}function Da(a,b,c){var d=Object.create(null),e=a.getComputedStyle(b)||{};s(c,function(a,b){var c=e[a];if(c){var C=c.charAt(0);if("-"===C||"+"===C||0<=C)c=Ra(c);0===c&&(c=null);d[b]=c}});return d}function Ra(a){var b=0;a=a.split(/\s*,\s*/);s(a,function(a){"s"==a.charAt(a.length-1)&&(a=a.substring(0,a.length-1));a=parseFloat(a)||0;b=b?Math.max(a,b):a});return b}function qa(a){return 0===a||null!=a}function Ea(a,b){var c=S,d=a+"s";b?c+="Duration":d+=" linear all";
+return[c,d]}function Fa(){var a=Object.create(null);return{flush:function(){a=Object.create(null)},count:function(b){return(b=a[b])?b.total:0},get:function(b){return(b=a[b])&&b.value},put:function(b,c){a[b]?a[b].total++:a[b]={total:1,value:c}}}}function Ga(a,b,c){s(c,function(c){a[c]=Z(a[c])?a[c]:b.style.getPropertyValue(c)})}var Q=r.noop,Ha=r.copy,Ca=r.extend,I=r.element,s=r.forEach,ba=r.isArray,R=r.isString,ra=r.isObject,P=r.isUndefined,Z=r.isDefined,Ia=r.isFunction,sa=r.isElement,S,ta,Y,ua;P(D.ontransitionend)&&
+Z(D.onwebkittransitionend)?(S="WebkitTransition",ta="webkitTransitionEnd transitionend"):(S="transition",ta="transitionend");P(D.onanimationend)&&Z(D.onwebkitanimationend)?(Y="WebkitAnimation",ua="webkitAnimationEnd animationend"):(Y="animation",ua="animationend");var ma=Y+"Delay",va=Y+"Duration",ia=S+"Delay";D=S+"Duration";var Ka=r.$$minErr("ng"),Sa={transitionDuration:D,transitionDelay:ia,transitionProperty:S+"Property",animationDuration:va,animationDelay:ma,animationIterationCount:Y+"IterationCount"},
+Ta={transitionDuration:D,transitionDelay:ia,animationDuration:va,animationDelay:ma};r.module("ngAnimate",[]).directive("ngAnimateSwap",["$animate","$rootScope",function(a,b){return{restrict:"A",transclude:"element",terminal:!0,priority:600,link:function(b,d,e,g,H){var A,C;b.$watchCollection(e.ngAnimateSwap||e["for"],function(e){A&&a.leave(A);C&&(C.$destroy(),C=null);if(e||0===e)C=b.$new(),H(C,function(b){A=b;a.enter(b,null,d)})})}}}]).directive("ngAnimateChildren",["$interpolate",function(a){return{link:function(b,
+c,d){function e(a){c.data("$$ngAnimateChildren","on"===a||"true"===a)}var g=d.ngAnimateChildren;r.isString(g)&&0===g.length?c.data("$$ngAnimateChildren",!0):(e(a(g)(b)),d.$observe("ngAnimateChildren",e))}}}]).factory("$$rAFScheduler",["$$rAF",function(a){function b(a){d=d.concat(a);c()}function c(){if(d.length){for(var b=d.shift(),H=0;H<b.length;H++)b[H]();e||a(function(){e||c()})}}var d,e;d=b.queue=[];b.waitUntilQuiet=function(b){e&&e();e=a(function(){e=null;b();c()})};return b}]).provider("$$animateQueue",
+["$animateProvider",function(a){function b(a){if(!a)return null;a=a.split(" ");var b=Object.create(null);s(a,function(a){b[a]=!0});return b}function c(a,c){if(a&&c){var d=b(c);return a.split(" ").some(function(a){return d[a]})}}function d(a,b,c,d){return g[a].some(function(a){return a(b,c,d)})}function e(a,b){var c=0<(a.addClass||"").length,d=0<(a.removeClass||"").length;return b?c&&d:c||d}var g=this.rules={skip:[],cancel:[],join:[]};g.join.push(function(a,b,c){return!b.structural&&e(b)});g.skip.push(function(a,
+b,c){return!b.structural&&!e(b)});g.skip.push(function(a,b,c){return"leave"==c.event&&b.structural});g.skip.push(function(a,b,c){return c.structural&&2===c.state&&!b.structural});g.cancel.push(function(a,b,c){return c.structural&&b.structural});g.cancel.push(function(a,b,c){return 2===c.state&&b.structural});g.cancel.push(function(a,b,d){a=b.addClass;b=b.removeClass;var e=d.addClass;d=d.removeClass;return P(a)&&P(b)||P(e)&&P(d)?!1:c(a,d)||c(b,e)});this.$get=["$$rAF","$rootScope","$rootElement","$document",
+"$$HashMap","$$animation","$$AnimateRunner","$templateRequest","$$jqLite","$$forceReflow",function(b,c,g,m,M,r,u,na,v,z){function K(){var a=!1;return function(b){a?b():c.$$postDigest(function(){a=!0;b()})}}function J(a,b,c){var f=G(b),d=G(a),h=[];(a=x[c])&&s(a,function(a){y.call(a.node,f)?h.push(a.callback):"leave"===c&&y.call(a.node,d)&&h.push(a.callback)});return h}function h(a,f,h){function l(c,f,d,h){g(function(){var c=J(y,a,f);c.length&&b(function(){s(c,function(b){b(a,d,h)})})});c.progress(f,
+d,h)}function x(b){var c=a,f=n;f.preparationClasses&&(c.removeClass(f.preparationClasses),f.preparationClasses=null);f.activeClasses&&(c.removeClass(f.activeClasses),f.activeClasses=null);Ja(a,n);fa(a,n);n.domOperation();k.complete(!b)}var n=Ha(h),z,y;if(a=Ma(a))z=G(a),y=a.parent();var n=ka(n),k=new u,g=K();ba(n.addClass)&&(n.addClass=n.addClass.join(" "));n.addClass&&!R(n.addClass)&&(n.addClass=null);ba(n.removeClass)&&(n.removeClass=n.removeClass.join(" "));n.removeClass&&!R(n.removeClass)&&(n.removeClass=
+null);n.from&&!ra(n.from)&&(n.from=null);n.to&&!ra(n.to)&&(n.to=null);if(!z)return x(),k;h=[z.className,n.addClass,n.removeClass].join(" ");if(!Ua(h))return x(),k;var C=0<=["enter","move","leave"].indexOf(f),w=!L||m[0].hidden||E.get(z);h=!w&&B.get(z)||{};var v=!!h.state;w||v&&1==h.state||(w=!q(a,y,f));if(w)return x(),k;C&&xa(a);w={structural:C,element:a,event:f,addClass:n.addClass,removeClass:n.removeClass,close:x,options:n,runner:k};if(v){if(d("skip",a,w,h)){if(2===h.state)return x(),k;V(a,h,w);
+return h.runner}if(d("cancel",a,w,h))if(2===h.state)h.runner.end();else if(h.structural)h.close();else return V(a,h,w),h.runner;else if(d("join",a,w,h))if(2===h.state)V(a,w,{});else return Qa(a,C?f:null,n),f=w.event=h.event,n=V(a,h,w),h.runner}else V(a,w,{});(v=w.structural)||(v="animate"===w.event&&0<Object.keys(w.options.to||{}).length||e(w));if(!v)return x(),N(a),k;var M=(h.counter||0)+1;w.counter=M;t(a,1,w);c.$$postDigest(function(){var b=B.get(z),c=!b,b=b||{},d=0<(a.parent()||[]).length&&("animate"===
+b.event||b.structural||e(b));if(c||b.counter!==M||!d){c&&(Ja(a,n),fa(a,n));if(c||C&&b.event!==f)n.domOperation(),k.end();d||N(a)}else f=!b.structural&&e(b,!0)?"setClass":b.event,t(a,2),b=r(a,f,b.options),b.done(function(b){x(!b);(b=B.get(z))&&b.counter===M&&N(G(a));l(k,f,"close",{})}),k.setHost(b),l(k,f,"start",{})});return k}function xa(a){a=G(a).querySelectorAll("[data-ng-animate]");s(a,function(a){var b=parseInt(a.getAttribute("data-ng-animate")),c=B.get(a);if(c)switch(b){case 2:c.runner.end();
+case 1:B.remove(a)}})}function N(a){a=G(a);a.removeAttribute("data-ng-animate");B.remove(a)}function k(a,b){return G(a)===G(b)}function q(a,b,c){c=I(m[0].body);var f=k(a,c)||"HTML"===a[0].nodeName,d=k(a,g),h=!1,l,e=E.get(G(a));for((a=a.data("$ngAnimatePin"))&&(b=a);b&&b.length;){d||(d=k(b,g));var x=b[0];if(1!==x.nodeType)break;a=B.get(x)||{};if(!h){x=E.get(x);if(!0===x&&!1!==e){e=!0;break}else!1===x&&(e=!1);h=a.structural}if(P(l)||!0===l)a=b.data("$$ngAnimateChildren"),Z(a)&&(l=a);if(h&&!1===l)break;
+f||(f=k(b,c));if(f&&d)break;if(!d&&(a=b.data("$ngAnimatePin"))){b=a;continue}b=b.parent()}return(!h||l)&&!0!==e&&d&&f}function t(a,b,c){c=c||{};c.state=b;a=G(a);a.setAttribute("data-ng-animate",b);c=(b=B.get(a))?Ca(b,c):c;B.put(a,c)}var B=new M,E=new M,L=null,f=c.$watch(function(){return 0===na.totalPendingRequests},function(a){a&&(f(),c.$$postDigest(function(){c.$$postDigest(function(){null===L&&(L=!0)})}))}),x={},l=a.classNameFilter(),Ua=l?function(a){return l.test(a)}:function(){return!0},Ja=U(v),
+y=Node.prototype.contains||function(a){return this===a||!!(this.compareDocumentPosition(a)&16)};return{on:function(a,b,c){b=oa(b);x[a]=x[a]||[];x[a].push({node:b,callback:c})},off:function(a,b,c){function f(a,b,c){var d=oa(b);return a.filter(function(a){return!(a.node===d&&(!c||a.callback===c))})}var d=x[a];d&&(x[a]=1===arguments.length?null:f(d,b,c))},pin:function(a,b){ya(sa(a),"element","not an element");ya(sa(b),"parentElement","not an element");a.data("$ngAnimatePin",b)},push:function(a,b,c,f){c=
+c||{};c.domOperation=f;return h(a,b,c)},enabled:function(a,b){var c=arguments.length;if(0===c)b=!!L;else if(sa(a)){var f=G(a),d=E.get(f);1===c?b=!d:E.put(f,!b)}else b=L=!!a;return b}}}]}]).provider("$$animation",["$animateProvider",function(a){function b(a){return a.data("$$animationRunner")}var c=this.drivers=[];this.$get=["$$jqLite","$rootScope","$injector","$$AnimateRunner","$$HashMap","$$rAFScheduler",function(a,e,g,H,A,C){function m(a){function b(a){if(a.processed)return a;a.processed=!0;var d=
+a.domNode,N=d.parentNode;e.put(d,a);for(var k;N;){if(k=e.get(N)){k.processed||(k=b(k));break}N=N.parentNode}(k||c).children.push(a);return a}var c={children:[]},d,e=new A;for(d=0;d<a.length;d++){var g=a[d];e.put(g.domNode,a[d]={domNode:g.domNode,fn:g.fn,children:[]})}for(d=0;d<a.length;d++)b(a[d]);return function(a){var b=[],c=[],d;for(d=0;d<a.children.length;d++)c.push(a.children[d]);a=c.length;var e=0,t=[];for(d=0;d<c.length;d++){var g=c[d];0>=a&&(a=e,e=0,b.push(t),t=[]);t.push(g.fn);g.children.forEach(function(a){e++;
+c.push(a)});a--}t.length&&b.push(t);return b}(c)}var M=[],r=U(a);return function(u,A,v){function z(a){a=a.hasAttribute("ng-animate-ref")?[a]:a.querySelectorAll("[ng-animate-ref]");var b=[];s(a,function(a){var c=a.getAttribute("ng-animate-ref");c&&c.length&&b.push(a)});return b}function K(a){var b=[],c={};s(a,function(a,f){var d=G(a.element),h=0<=["enter","move"].indexOf(a.event),d=a.structural?z(d):[];if(d.length){var e=h?"to":"from";s(d,function(a){var b=a.getAttribute("ng-animate-ref");c[b]=c[b]||
+{};c[b][e]={animationID:f,element:I(a)}})}else b.push(a)});var d={},h={};s(c,function(c,e){var l=c.from,t=c.to;if(l&&t){var g=a[l.animationID],E=a[t.animationID],k=l.animationID.toString();if(!h[k]){var z=h[k]={structural:!0,beforeStart:function(){g.beforeStart();E.beforeStart()},close:function(){g.close();E.close()},classes:J(g.classes,E.classes),from:g,to:E,anchors:[]};z.classes.length?b.push(z):(b.push(g),b.push(E))}h[k].anchors.push({out:l.element,"in":t.element})}else l=l?l.animationID:t.animationID,
+t=l.toString(),d[t]||(d[t]=!0,b.push(a[l]))});return b}function J(a,b){a=a.split(" ");b=b.split(" ");for(var c=[],d=0;d<a.length;d++){var h=a[d];if("ng-"!==h.substring(0,3))for(var e=0;e<b.length;e++)if(h===b[e]){c.push(h);break}}return c.join(" ")}function h(a){for(var b=c.length-1;0<=b;b--){var d=c[b];if(g.has(d)&&(d=g.get(d)(a)))return d}}function xa(a,c){a.from&&a.to?(b(a.from.element).setHost(c),b(a.to.element).setHost(c)):b(a.element).setHost(c)}function N(){var a=b(u);!a||"leave"===A&&v.$$domOperationFired||
+a.end()}function k(b){u.off("$destroy",N);u.removeData("$$animationRunner");r(u,v);fa(u,v);v.domOperation();E&&a.removeClass(u,E);u.removeClass("ng-animate");t.complete(!b)}v=ka(v);var q=0<=["enter","move","leave"].indexOf(A),t=new H({end:function(){k()},cancel:function(){k(!0)}});if(!c.length)return k(),t;u.data("$$animationRunner",t);var B=za(u.attr("class"),za(v.addClass,v.removeClass)),E=v.tempClasses;E&&(B+=" "+E,v.tempClasses=null);var L;q&&(L="ng-"+A+"-prepare",a.addClass(u,L));M.push({element:u,
+classes:B,event:A,structural:q,options:v,beforeStart:function(){u.addClass("ng-animate");E&&a.addClass(u,E);L&&(a.removeClass(u,L),L=null)},close:k});u.on("$destroy",N);if(1<M.length)return t;e.$$postDigest(function(){var a=[];s(M,function(c){b(c.element)?a.push(c):c.close()});M.length=0;var c=K(a),d=[];s(c,function(a){d.push({domNode:G(a.from?a.from.element:a.element),fn:function(){a.beforeStart();var c,d=a.close;if(b(a.anchors?a.from.element||a.to.element:a.element)){var f=h(a);f&&(c=f.start)}c?
+(c=c(),c.done(function(a){d(!a)}),xa(a,c)):d()}})});C(m(d))});return t}}]}]).provider("$animateCss",["$animateProvider",function(a){var b=Fa(),c=Fa();this.$get=["$window","$$jqLite","$$AnimateRunner","$timeout","$$forceReflow","$sniffer","$$rAFScheduler","$$animateQueue",function(a,e,g,H,A,C,m,M){function r(a,b){var c=a.parentNode;return(c.$$ngAnimateParentKey||(c.$$ngAnimateParentKey=++K))+"-"+a.getAttribute("class")+"-"+b}function u(h,g,z,k){var q;0<b.count(z)&&(q=c.get(z),q||(g=X(g,"-stagger"),
+e.addClass(h,g),q=Da(a,h,k),q.animationDuration=Math.max(q.animationDuration,0),q.transitionDuration=Math.max(q.transitionDuration,0),e.removeClass(h,g),c.put(z,q)));return q||{}}function na(a){J.push(a);m.waitUntilQuiet(function(){b.flush();c.flush();for(var a=A(),d=0;d<J.length;d++)J[d](a);J.length=0})}function v(c,e,g){e=b.get(g);e||(e=Da(a,c,Sa),"infinite"===e.animationIterationCount&&(e.animationIterationCount=1));b.put(g,e);c=e;g=c.animationDelay;e=c.transitionDelay;c.maxDelay=g&&e?Math.max(g,
+e):g||e;c.maxDuration=Math.max(c.animationDuration*c.animationIterationCount,c.transitionDuration);return c}var z=U(e),K=0,J=[];return function(a,c){function d(){q()}function k(){q(!0)}function q(b){if(!(A||wa&&K)){A=!0;K=!1;f.$$skipPreparationClasses||e.removeClass(a,da);e.removeClass(a,ca);pa(l,!1);la(l,!1);s(m,function(a){l.style[a[0]]=""});z(a,f);fa(a,f);Object.keys(x).length&&s(x,function(a,b){a?l.style.setProperty(b,a):l.style.removeProperty(b)});if(f.onDone)f.onDone();ea&&ea.length&&a.off(ea.join(" "),
+E);var c=a.data("$$animateCss");c&&(H.cancel(c[0].timer),a.removeData("$$animateCss"));D&&D.complete(!b)}}function t(a){p.blockTransition&&la(l,a);p.blockKeyframeAnimation&&pa(l,!!a)}function B(){D=new g({end:d,cancel:k});na(Q);q();return{$$willAnimate:!1,start:function(){return D},end:d}}function E(a){a.stopPropagation();var b=a.originalEvent||a;a=b.$manualTimeStamp||Date.now();b=parseFloat(b.elapsedTime.toFixed(3));Math.max(a-U,0)>=P&&b>=O&&(wa=!0,q())}function L(){function b(){if(!A){t(!1);s(m,
+function(a){l.style[a[0]]=a[1]});z(a,f);e.addClass(a,ca);if(p.recalculateTimingStyles){ja=l.className+" "+da;ga=r(l,ja);F=v(l,ja,ga);$=F.maxDelay;n=Math.max($,0);O=F.maxDuration;if(0===O){q();return}p.hasTransitions=0<F.transitionDuration;p.hasAnimations=0<F.animationDuration}p.applyAnimationDelay&&($="boolean"!==typeof f.delay&&qa(f.delay)?parseFloat(f.delay):$,n=Math.max($,0),F.animationDelay=$,aa=[ma,$+"s"],m.push(aa),l.style[aa[0]]=aa[1]);P=1E3*n;R=1E3*O;if(f.easing){var d,g=f.easing;p.hasTransitions&&
+(d=S+"TimingFunction",m.push([d,g]),l.style[d]=g);p.hasAnimations&&(d=Y+"TimingFunction",m.push([d,g]),l.style[d]=g)}F.transitionDuration&&ea.push(ta);F.animationDuration&&ea.push(ua);U=Date.now();var k=P+1.5*R;d=U+k;var g=a.data("$$animateCss")||[],L=!0;if(g.length){var B=g[0];(L=d>B.expectedEndTime)?H.cancel(B.timer):g.push(q)}L&&(k=H(c,k,!1),g[0]={timer:k,expectedEndTime:d},g.push(q),a.data("$$animateCss",g));if(ea.length)a.on(ea.join(" "),E);f.to&&(f.cleanupStyles&&Ga(x,l,Object.keys(f.to)),Ba(a,
+f))}}function c(){var b=a.data("$$animateCss");if(b){for(var d=1;d<b.length;d++)b[d]();a.removeData("$$animateCss")}}if(!A)if(l.parentNode){var d=function(a){if(wa)K&&a&&(K=!1,q());else if(K=!a,F.animationDuration)if(a=pa(l,K),K)m.push(a);else{var b=m,c=b.indexOf(a);0<=a&&b.splice(c,1)}},g=0<Z&&(F.transitionDuration&&0===W.transitionDuration||F.animationDuration&&0===W.animationDuration)&&Math.max(W.animationDelay,W.transitionDelay);g?H(b,Math.floor(g*Z*1E3),!1):b();I.resume=function(){d(!0)};I.pause=
+function(){d(!1)}}else q()}var f=c||{};f.$$prepared||(f=ka(Ha(f)));var x={},l=G(a);if(!l||!l.parentNode||!M.enabled())return B();var m=[],J=a.attr("class"),y=La(f),A,K,wa,D,I,n,P,O,R,U,ea=[];if(0===f.duration||!C.animations&&!C.transitions)return B();var w=f.event&&ba(f.event)?f.event.join(" "):f.event,V="",T="";w&&f.structural?V=X(w,"ng-",!0):w&&(V=w);f.addClass&&(T+=X(f.addClass,"-add"));f.removeClass&&(T.length&&(T+=" "),T+=X(f.removeClass,"-remove"));f.applyClassesEarly&&T.length&&z(a,f);var da=
+[V,T].join(" ").trim(),ja=J+" "+da,ca=X(da,"-active"),J=y.to&&0<Object.keys(y.to).length;if(!(0<(f.keyframeStyle||"").length||J||da))return B();var ga,W;0<f.stagger?(y=parseFloat(f.stagger),W={transitionDelay:y,animationDelay:y,transitionDuration:0,animationDuration:0}):(ga=r(l,ja),W=u(l,da,ga,Ta));f.$$skipPreparationClasses||e.addClass(a,da);f.transitionStyle&&(y=[S,f.transitionStyle],ha(l,y),m.push(y));0<=f.duration&&(y=0<l.style[S].length,y=Ea(f.duration,y),ha(l,y),m.push(y));f.keyframeStyle&&
+(y=[Y,f.keyframeStyle],ha(l,y),m.push(y));var Z=W?0<=f.staggerIndex?f.staggerIndex:b.count(ga):0;(w=0===Z)&&!f.skipBlocking&&la(l,9999);var F=v(l,ja,ga),$=F.maxDelay;n=Math.max($,0);O=F.maxDuration;var p={};p.hasTransitions=0<F.transitionDuration;p.hasAnimations=0<F.animationDuration;p.hasTransitionAll=p.hasTransitions&&"all"==F.transitionProperty;p.applyTransitionDuration=J&&(p.hasTransitions&&!p.hasTransitionAll||p.hasAnimations&&!p.hasTransitions);p.applyAnimationDuration=f.duration&&p.hasAnimations;
+p.applyTransitionDelay=qa(f.delay)&&(p.applyTransitionDuration||p.hasTransitions);p.applyAnimationDelay=qa(f.delay)&&p.hasAnimations;p.recalculateTimingStyles=0<T.length;if(p.applyTransitionDuration||p.applyAnimationDuration)O=f.duration?parseFloat(f.duration):O,p.applyTransitionDuration&&(p.hasTransitions=!0,F.transitionDuration=O,y=0<l.style[S+"Property"].length,m.push(Ea(O,y))),p.applyAnimationDuration&&(p.hasAnimations=!0,F.animationDuration=O,m.push([va,O+"s"]));if(0===O&&!p.recalculateTimingStyles)return B();
+if(null!=f.delay){var aa;"boolean"!==typeof f.delay&&(aa=parseFloat(f.delay),n=Math.max(aa,0));p.applyTransitionDelay&&m.push([ia,aa+"s"]);p.applyAnimationDelay&&m.push([ma,aa+"s"])}null==f.duration&&0<F.transitionDuration&&(p.recalculateTimingStyles=p.recalculateTimingStyles||w);P=1E3*n;R=1E3*O;f.skipBlocking||(p.blockTransition=0<F.transitionDuration,p.blockKeyframeAnimation=0<F.animationDuration&&0<W.animationDelay&&0===W.animationDuration);f.from&&(f.cleanupStyles&&Ga(x,l,Object.keys(f.from)),
+Aa(a,f));p.blockTransition||p.blockKeyframeAnimation?t(O):f.skipBlocking||la(l,!1);return{$$willAnimate:!0,end:d,start:function(){if(!A)return I={end:d,cancel:k,resume:null,pause:null},D=new g(I),na(L),D}}}}]}]).provider("$$animateCssDriver",["$$animationProvider",function(a){a.drivers.push("$$animateCssDriver");this.$get=["$animateCss","$rootScope","$$AnimateRunner","$rootElement","$sniffer","$$jqLite","$document",function(a,c,d,e,g,H,A){function C(a){return a.replace(/\bng-\S+\b/g,"")}function m(a,
+b){R(a)&&(a=a.split(" "));R(b)&&(b=b.split(" "));return a.filter(function(a){return-1===b.indexOf(a)}).join(" ")}function M(c,e,g){function h(a){var b={},c=G(a).getBoundingClientRect();s(["width","height","top","left"],function(a){var d=c[a];switch(a){case "top":d+=D.scrollTop;break;case "left":d+=D.scrollLeft}b[a]=Math.floor(d)+"px"});return b}function A(){var c=C(g.attr("class")||""),d=m(c,q),c=m(q,c),d=a(k,{to:h(g),addClass:"ng-anchor-in "+d,removeClass:"ng-anchor-out "+c,delay:!0});return d.$$willAnimate?
+d:null}function H(){k.remove();e.removeClass("ng-animate-shim");g.removeClass("ng-animate-shim")}var k=I(G(e).cloneNode(!0)),q=C(k.attr("class")||"");e.addClass("ng-animate-shim");g.addClass("ng-animate-shim");k.addClass("ng-anchor");v.append(k);var t;c=function(){var c=a(k,{addClass:"ng-anchor-out",delay:!0,from:h(e)});return c.$$willAnimate?c:null}();if(!c&&(t=A(),!t))return H();var B=c||t;return{start:function(){function a(){c&&c.end()}var b,c=B.start();c.done(function(){c=null;if(!t&&(t=A()))return c=
+t.start(),c.done(function(){c=null;H();b.complete()}),c;H();b.complete()});return b=new d({end:a,cancel:a})}}}function r(a,b,c,e){var g=u(a,Q),m=u(b,Q),k=[];s(e,function(a){(a=M(c,a.out,a["in"]))&&k.push(a)});if(g||m||0!==k.length)return{start:function(){function a(){s(b,function(a){a.end()})}var b=[];g&&b.push(g.start());m&&b.push(m.start());s(k,function(a){b.push(a.start())});var c=new d({end:a,cancel:a});d.all(b,function(a){c.complete(a)});return c}}}function u(c){var d=c.element,e=c.options||
+{};c.structural&&(e.event=c.event,e.structural=!0,e.applyClassesEarly=!0,"leave"===c.event&&(e.onDone=e.domOperation));e.preparationClasses&&(e.event=ca(e.event,e.preparationClasses));c=a(d,e);return c.$$willAnimate?c:null}if(!g.animations&&!g.transitions)return Q;var D=A[0].body;c=G(e);var v=I(c.parentNode&&11===c.parentNode.nodeType||D.contains(c)?c:D);U(H);return function(a){return a.from&&a.to?r(a.from,a.to,a.classes,a.anchors):u(a)}}]}]).provider("$$animateJs",["$animateProvider",function(a){this.$get=
+["$injector","$$AnimateRunner","$$jqLite",function(b,c,d){function e(c){c=ba(c)?c:c.split(" ");for(var d=[],e={},g=0;g<c.length;g++){var s=c[g],r=a.$$registeredAnimations[s];r&&!e[s]&&(d.push(b.get(r)),e[s]=!0)}return d}var g=U(d);return function(a,b,d,m){function r(){m.domOperation();g(a,m)}function D(a,b,d,e,f){switch(d){case "animate":b=[b,e.from,e.to,f];break;case "setClass":b=[b,z,K,f];break;case "addClass":b=[b,z,f];break;case "removeClass":b=[b,K,f];break;default:b=[b,f]}b.push(e);if(a=a.apply(a,
+b))if(Ia(a.start)&&(a=a.start()),a instanceof c)a.done(f);else if(Ia(a))return a;return Q}function u(a,b,d,e,f){var g=[];s(e,function(e){var h=e[f];h&&g.push(function(){var e,f,g=!1,k=function(a){g||(g=!0,(f||Q)(a),e.complete(!a))};e=new c({end:function(){k()},cancel:function(){k(!0)}});f=D(h,a,b,d,function(a){k(!1===a)});return e})});return g}function G(a,b,d,e,f){var g=u(a,b,d,e,f);if(0===g.length){var h,k;"beforeSetClass"===f?(h=u(a,"removeClass",d,e,"beforeRemoveClass"),k=u(a,"addClass",d,e,"beforeAddClass")):
+"setClass"===f&&(h=u(a,"removeClass",d,e,"removeClass"),k=u(a,"addClass",d,e,"addClass"));h&&(g=g.concat(h));k&&(g=g.concat(k))}if(0!==g.length)return function(a){var b=[];g.length&&s(g,function(a){b.push(a())});b.length?c.all(b,a):a();return function(a){s(b,function(b){a?b.cancel():b.end()})}}}var v=!1;3===arguments.length&&ra(d)&&(m=d,d=null);m=ka(m);d||(d=a.attr("class")||"",m.addClass&&(d+=" "+m.addClass),m.removeClass&&(d+=" "+m.removeClass));var z=m.addClass,K=m.removeClass,J=e(d),h,I;if(J.length){var N,
+k;"leave"==b?(k="leave",N="afterLeave"):(k="before"+b.charAt(0).toUpperCase()+b.substr(1),N=b);"enter"!==b&&"move"!==b&&(h=G(a,b,m,J,k));I=G(a,b,m,J,N)}if(h||I){var q;return{$$willAnimate:!0,end:function(){q?q.end():(v=!0,r(),fa(a,m),q=new c,q.complete(!0));return q},start:function(){function b(c){v=!0;r();fa(a,m);q.complete(c)}if(q)return q;q=new c;var d,e=[];h&&e.push(function(a){d=h(a)});e.length?e.push(function(a){r();a(!0)}):r();I&&e.push(function(a){d=I(a)});q.setHost({end:function(){v||((d||
+Q)(void 0),b(void 0))},cancel:function(){v||((d||Q)(!0),b(!0))}});c.chain(e,b);return q}}}}}]}]).provider("$$animateJsDriver",["$$animationProvider",function(a){a.drivers.push("$$animateJsDriver");this.$get=["$$animateJs","$$AnimateRunner",function(a,c){function d(c){return a(c.element,c.event,c.classes,c.options)}return function(a){if(a.from&&a.to){var b=d(a.from),r=d(a.to);if(b||r)return{start:function(){function a(){return function(){s(d,function(a){a.end()})}}var d=[];b&&d.push(b.start());r&&
+d.push(r.start());c.all(d,function(a){e.complete(a)});var e=new c({end:a(),cancel:a()});return e}}}else return d(a)}}]}])})(window,window.angular);
+//# sourceMappingURL=angular-animate.min.js.map
+
 angular.module("colorpicker.module",[]).factory("Helper",function(){"use strict";return{closestSlider:function(e){var o=e.matches||e.webkitMatchesSelector||e.mozMatchesSelector||e.msMatchesSelector;return o.bind(e)("I")?e.parentNode:e},getOffset:function(e,o){for(var t=0,n=0,r=e.getBoundingClientRect();e&&!isNaN(e.offsetLeft)&&!isNaN(e.offsetTop);)o||"BODY"!==e.tagName?(t+=e.scrollLeft,n+=e.scrollTop):(t+=document.documentElement.scrollLeft||e.scrollLeft,n+=document.documentElement.scrollTop||e.scrollTop),e=e.offsetParent;return{top:r.top+window.pageYOffset,left:r.left+window.pageXOffset,scrollX:t,scrollY:n}},stringParsers:[{re:/rgba?\(\s*(\d{1,3})\s*,\s*(\d{1,3})\s*,\s*(\d{1,3})\s*(?:,\s*(\d+(?:\.\d+)?)\s*)?\)/,parse:function(e){return[e[1],e[2],e[3],e[4]]}},{re:/rgba?\(\s*(\d+(?:\.\d+)?)\%\s*,\s*(\d+(?:\.\d+)?)\%\s*,\s*(\d+(?:\.\d+)?)\%\s*(?:,\s*(\d+(?:\.\d+)?)\s*)?\)/,parse:function(e){return[2.55*e[1],2.55*e[2],2.55*e[3],e[4]]}},{re:/#([a-fA-F0-9]{2})([a-fA-F0-9]{2})([a-fA-F0-9]{2})/,parse:function(e){return[parseInt(e[1],16),parseInt(e[2],16),parseInt(e[3],16)]}},{re:/#([a-fA-F0-9])([a-fA-F0-9])([a-fA-F0-9])/,parse:function(e){return[parseInt(e[1]+e[1],16),parseInt(e[2]+e[2],16),parseInt(e[3]+e[3],16)]}}]}}).factory("Color",["Helper",function(e){"use strict";return{value:{h:1,s:1,b:1,a:1},rgb:function(){var e=this.toRGB();return"rgb("+e.r+","+e.g+","+e.b+")"},rgba:function(){var e=this.toRGB();return"rgba("+e.r+","+e.g+","+e.b+","+e.a+")"},hex:function(){return this.toHex()},RGBtoHSB:function(e,o,t,n){e/=255,o/=255,t/=255;var r,i,l,c;return l=Math.max(e,o,t),c=l-Math.min(e,o,t),r=0===c?null:l===e?(o-t)/c:l===o?(t-e)/c+2:(e-o)/c+4,r=(r+360)%6*60/360,i=0===c?0:c/l,{h:r||1,s:i,b:l,a:n||1}},setColor:function(o){o=o?o.toLowerCase():o;for(var t in e.stringParsers)if(e.stringParsers.hasOwnProperty(t)){var n=e.stringParsers[t],r=n.re.exec(o),i=r&&n.parse(r);if(i)return this.value=this.RGBtoHSB.apply(null,i),!1}},setHue:function(e){this.value.h=1-e},setSaturation:function(e){this.value.s=e},setLightness:function(e){this.value.b=1-e},setAlpha:function(e){this.value.a=parseInt(100*(1-e),10)/100},toRGB:function(e,o,t,n){e||(e=this.value.h,o=this.value.s,t=this.value.b),e*=360;var r,i,l,c,s;return e=e%360/60,s=t*o,c=s*(1-Math.abs(e%2-1)),r=i=l=t-s,e=~~e,r+=[s,c,0,0,c,s][e],i+=[c,s,s,c,0,0][e],l+=[0,0,c,s,s,c][e],{r:Math.round(255*r),g:Math.round(255*i),b:Math.round(255*l),a:n||this.value.a}},toHex:function(e,o,t,n){var r=this.toRGB(e,o,t,n);return"#"+(1<<24|parseInt(r.r,10)<<16|parseInt(r.g,10)<<8|parseInt(r.b,10)).toString(16).substr(1)}}}]).factory("Slider",["Helper",function(e){"use strict";var o={maxLeft:0,maxTop:0,callLeft:null,callTop:null,knob:{top:0,left:0}},t={};return{getSlider:function(){return o},getLeftPosition:function(e){return Math.max(0,Math.min(o.maxLeft,o.left+((e.pageX||t.left)-t.left)))},getTopPosition:function(e){return Math.max(0,Math.min(o.maxTop,o.top+((e.pageY||t.top)-t.top)))},setSlider:function(n,r){var i=e.closestSlider(n.target),l=e.getOffset(i,r),c=i.getBoundingClientRect(),s=n.clientX-c.left,a=n.clientY-c.top;o.knob=i.children[0].style,o.left=n.pageX-l.left-window.pageXOffset+l.scrollX,o.top=n.pageY-l.top-window.pageYOffset+l.scrollY,t={left:n.pageX-(s-o.left),top:n.pageY-(a-o.top)}},setSaturation:function(e,t){o={maxLeft:100,maxTop:100,callLeft:"setSaturation",callTop:"setLightness"},this.setSlider(e,t)},setHue:function(e,t){o={maxLeft:0,maxTop:100,callLeft:!1,callTop:"setHue"},this.setSlider(e,t)},setAlpha:function(e,t){o={maxLeft:0,maxTop:100,callLeft:!1,callTop:"setAlpha"},this.setSlider(e,t)},setKnob:function(e,t){o.knob.top=e+"px",o.knob.left=t+"px"}}}]).directive("colorpicker",["$document","$compile","Color","Slider","Helper",function(e,o,t,n,r){"use strict";return{require:"?ngModel",restrict:"A",link:function(i,l,c,s){function a(){e.on("mousemove",p),e.on("mouseup",f)}function u(){try{A.css("backgroundColor",O[x]())}catch(e){A.css("backgroundColor",O.toHex())}M.css("backgroundColor",O.toHex(O.value.h,1,1,1)),"rgba"===x&&(b.css.backgroundColor=O.toHex())}function p(e){var o=n.getLeftPosition(e),t=n.getTopPosition(e),r=n.getSlider();n.setKnob(t,o),r.callLeft&&O[r.callLeft].call(O,o/100),r.callTop&&O[r.callTop].call(O,t/100),u();var c=O[x]();return l.val(c),s&&i.$apply(s.$setViewValue(c)),L&&D.val(c),!1}function f(){m("colorpicker-selected"),e.off("mousemove",p),e.off("mouseup",f)}function d(e){O.setColor(l.val()),L&&!e&&D.val(l.val()),B.eq(0).css({left:100*O.value.s+"px",top:100-100*O.value.b+"px"}),B.eq(1).css("top",100*(1-O.value.h)+"px"),B.eq(2).css("top",100*(1-O.value.a)+"px"),u()}function h(){var e,o=r.getOffset(l[0]);return angular.isDefined(c.colorpickerParent)&&(o.left=0,o.top=0),"top"===w?e={top:o.top-147,left:o.left}:"right"===w?e={top:o.top,left:o.left+126}:"bottom"===w?e={top:o.top+l[0].offsetHeight+2,left:o.left}:"left"===w&&(e={top:o.top,left:o.left-150}),{top:e.top+"px",left:e.left+"px"}}function g(){v()}function k(){T.hasClass("colorpicker-visible")||(d(),T.addClass("colorpicker-visible").css(h()),m("colorpicker-shown"),S===!1&&e.on("mousedown",g),c.colorpickerIsOpen&&(i[c.colorpickerIsOpen]=!0,i.$$phase||i.$digest()))}function m(e){s&&i.$emit(e,{name:c.ngModel,value:s.$modelValue})}function v(){T.hasClass("colorpicker-visible")&&(T.removeClass("colorpicker-visible"),m("colorpicker-closed"),e.off("mousedown",g),c.colorpickerIsOpen&&(i[c.colorpickerIsOpen]=!1,i.$$phase||i.$digest()))}var b,x=c.colorpicker?c.colorpicker:"hex",w=angular.isDefined(c.colorpickerPosition)?c.colorpickerPosition:"bottom",S=angular.isDefined(c.colorpickerInline)?c.colorpickerInline:!1,I=angular.isDefined(c.colorpickerFixedPosition)?c.colorpickerFixedPosition:!1,C=angular.isDefined(c.colorpickerParent)?l.parent():angular.element(document.body),L=angular.isDefined(c.colorpickerWithInput)?c.colorpickerWithInput:!1,$=L?'<input type="text" name="colorpicker-input" spellcheck="false">':"",P=S?"":'<button type="button" class="close close-colorpicker">&times;</button>',H='<div class="colorpicker dropdown"><div class="dropdown-menu"><colorpicker-saturation><i></i></colorpicker-saturation><colorpicker-hue><i></i></colorpicker-hue><colorpicker-alpha><i></i></colorpicker-alpha><colorpicker-preview></colorpicker-preview>'+$+P+"</div></div>",T=angular.element(H),O=t,y=T.find("colorpicker-hue"),M=T.find("colorpicker-saturation"),A=T.find("colorpicker-preview"),B=T.find("i");if(o(T)(i),L){var D=T.find("input");D.on("mousedown",function(e){e.stopPropagation()}).on("keyup",function(){var e=this.value;l.val(e),s&&s.$modelValue!==e&&(i.$apply(s.$setViewValue(e)),d(!0))})}"rgba"===x&&(T.addClass("alpha"),b=T.find("colorpicker-alpha"),b.on("click",function(e){n.setAlpha(e,I),p(e)}).on("mousedown",function(e){n.setAlpha(e,I),a()}).on("mouseup",function(e){m("colorpicker-selected-alpha")})),y.on("click",function(e){n.setHue(e,I),p(e)}).on("mousedown",function(e){n.setHue(e,I),a()}).on("mouseup",function(e){m("colorpicker-selected-hue")}),M.on("click",function(e){n.setSaturation(e,I),p(e),angular.isDefined(c.colorpickerCloseOnSelect)&&v()}).on("mousedown",function(e){n.setSaturation(e,I),a()}).on("mouseup",function(e){m("colorpicker-selected-saturation")}),I&&T.addClass("colorpicker-fixed-position"),T.addClass("colorpicker-position-"+w),"true"===S&&T.addClass("colorpicker-inline"),C.append(T),s&&(s.$render=function(){l.val(s.$viewValue),d()}),l.on("blur keyup change",function(){d()}),l.on("$destroy",function(){T.remove()}),S===!1?l.on("click",k):k(),T.on("mousedown",function(e){e.stopPropagation(),e.preventDefault()}),T.find("button").on("click",function(){v()}),c.colorpickerIsOpen&&i.$watch(c.colorpickerIsOpen,function(e){e===!0?k():e===!1&&v()})}}}]);
-/**
- * Permission is hereby granted, free of charge, to any person obtaining a copy
- * of this software and associated documentation files (the "Software"), to
- * deal in the Software without restriction, including without limitation the
- * rights to use, copy, modify, merge, publish, distribute, sublicense, and/or
- * sell copies of the Software, and to permit persons to whom the Software is
- * furnished to do so, subject to the following conditions:
+/*
+ * angular-loading-bar
  *
- * The above copyright notice and this permission notice shall be included in
- * all copies or substantial portions of the Software.
+ * intercepts XHR requests and creates a loading bar.
+ * Based on the excellent nprogress work by rstacruz (more info in readme)
  *
- * THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
- * IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
- * FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE
- * AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER
- * LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING
- * FROM, OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS
- * IN THE SOFTWARE.
+ * (c) 2013 Wes Cruver
+ * License: MIT
  */
 
+
+(function() {
+
+'use strict';
+
+// Alias the loading bar for various backwards compatibilities since the project has matured:
+angular.module('angular-loading-bar', ['cfp.loadingBarInterceptor']);
+angular.module('chieffancypants.loadingBar', ['cfp.loadingBarInterceptor']);
+
+
 /**
- * Implementing Drag and Drop functionality in AngularJS is easier than ever.
- * Demo: http://codef0rmer.github.com/angular-dragdrop/
- * 
- * @version 1.0.13
+ * loadingBarInterceptor service
  *
- * (c) 2013 Amit Gharat a.k.a codef0rmer <amit.2006.it@gmail.com> - amitgharat.wordpress.com
+ * Registers itself as an Angular interceptor and listens for XHR requests.
  */
-!function(e,a,t,n){"use strict";var i=a.module("ngDragDrop",[]).service("ngDragDropService",["$timeout","$parse","$q",function(r,l,o){this.draggableScope=null,this.droppableScope=null,t("head").prepend('<style type="text/css">@charset "UTF-8";.angular-dragdrop-hide{display: none !important;}</style>'),this.callEventCallback=function(e,a,n,i){function r(a){var n=-1!==a.indexOf("(")?a.indexOf("("):a.length,i=-1!==a.lastIndexOf(")")?a.lastIndexOf(")"):a.length,r=a.substring(n+1,i),o=-1!==a.indexOf(".")?a.substr(0,a.indexOf(".")):null;return o=e[o]&&"function"==typeof e[o].constructor?o:null,{callback:a.substring(o&&o.length+1||0,n),args:t.map(r&&r.split(",")||[],function(a){return[l(a)(e)]}),constructor:o}}if(a){var o=r(a),d=o.callback,s=o.constructor,p=[n,i].concat(o.args);return(e[d]||e[s][d]).apply(e[d]?e:e[s],p)}},this.invokeDrop=function(e,l,d,s){var p,c,u,g="",f="",b={},h={},v=null,y={},x={},m=null,D=this.droppableScope,q=this.draggableScope,j=null,k=[];g=e.ngattr("ng-model"),f=l.ngattr("ng-model"),p=q.$eval(g),c=D.$eval(f),m=l.find("[jqyoui-draggable]:last,[data-jqyoui-draggable]:last"),h=D.$eval(l.attr("jqyoui-droppable")||l.attr("data-jqyoui-droppable"))||[],b=q.$eval(e.attr("jqyoui-draggable")||e.attr("data-jqyoui-draggable"))||[],b.index=this.fixIndex(q,b,p),h.index=this.fixIndex(D,h,c),v=a.isArray(p)?b.index:null,y=a.isArray(p)?p[v]:p,b.deepCopy&&(y=a.copy(y)),x=a.isArray(c)&&h&&h.index!==n?c[h.index]:a.isArray(c)?{}:c,h.deepCopy&&(x=a.copy(x)),b.beforeDrop&&k.push(this.callEventCallback(q,b.beforeDrop,d,s)),o.all(k).then(a.bind(this,function(){if(b.insertInline&&g===f){if(b.index>h.index){u=p[b.index];for(var n=b.index;n>h.index;n--)c[n]=a.copy(c[n-1]),c[n-1]={},c[n][b.direction]="left";c[h.index]=u}else{u=p[b.index];for(var n=b.index;n<h.index;n++)c[n]=a.copy(c[n+1]),c[n+1]={},c[n][b.direction]="right";c[h.index]=u}this.callEventCallback(D,h.onDrop,d,s)}else b.animate===!0?(j=e.clone(),j.css({position:"absolute"}).css(e.offset()),t("body").append(j),e.addClass("angular-dragdrop-hide"),this.move(j,m.length>0?m:l,null,"fast",h,function(){j.remove()}),this.move(m.length>0&&!h.multiple?m:[],e.parent("[jqyoui-droppable],[data-jqyoui-droppable]"),i.startXY,"fast",h,a.bind(this,function(){r(a.bind(this,function(){e.css({position:"relative",left:"",top:""}).removeClass("angular-dragdrop-hide"),m.css({position:"relative",left:"",top:"",display:"none"===m.css("display")?"":m.css("display")}),this.mutateDraggable(q,h,b,g,f,x,e),this.mutateDroppable(D,h,b,f,y,v),this.callEventCallback(D,h.onDrop,d,s)}))}))):r(a.bind(this,function(){this.mutateDraggable(q,h,b,g,f,x,e),this.mutateDroppable(D,h,b,f,y,v),this.callEventCallback(D,h.onDrop,d,s)}))}))["finally"](a.bind(this,function(){this.restore(e)}))},this.move=function(a,t,i,r,l,o){if(0===a.length)return o&&e.setTimeout(function(){o()},300),!1;var d=a.css("z-index"),s=a[l.containment||"offset"](),p=t.css("display"),c=t.hasClass("ng-hide"),u=t.hasClass("angular-dragdrop-hide");null===i&&t.length>0&&((t.attr("jqyoui-draggable")||t.attr("data-jqyoui-draggable"))!==n&&t.ngattr("ng-model")!==n&&t.is(":visible")&&l&&l.multiple?(i=t[l.containment||"offset"](),l.stack===!1?i.left+=t.outerWidth(!0):i.top+=t.outerHeight(!0)):(c&&t.removeClass("ng-hide"),u&&t.removeClass("angular-dragdrop-hide"),i=t.css({visibility:"hidden",display:"block"})[l.containment||"offset"](),t.css({visibility:"",display:p}))),a.css({position:"absolute","z-index":9999}).css(s).animate(i,r,function(){c&&t.addClass("ng-hide"),u&&t.addClass("angular-dragdrop-hide"),a.css("z-index",d),o&&o()})},this.mutateDroppable=function(e,t,n,i,r,o){var d=e.$eval(i);e.dndDragItem=r,a.isArray(d)?(t&&t.index>=0?d[t.index]=r:d.push(r),n&&n.placeholder===!0&&(d[d.length-1].jqyoui_pos=o)):(l(i+" = dndDragItem")(e),n&&n.placeholder===!0&&(d.jqyoui_pos=o))},this.mutateDraggable=function(e,t,i,r,o,d,s){var p=a.equals(d,{})||!d,c=e.$eval(r);e.dndDropItem=d,i&&i.placeholder?"keep"!=i.placeholder&&(a.isArray(c)&&i.index!==n?c[i.index]=d:l(r+" = dndDropItem")(e)):a.isArray(c)?p?i&&i.placeholder!==!0&&"keep"!==i.placeholder&&c.splice(i.index,1):c[i.index]=d:(l(r+" = dndDropItem")(e),e.$parent&&l(r+" = dndDropItem")(e.$parent)),this.restore(s)},this.restore=function(e){e.css({"z-index":"",left:"",top:""})},this.fixIndex=function(e,t,i){if(t.applyFilter&&a.isArray(i)&&i.length>0){var r=e[t.applyFilter](),l=r[t.index],o=n;return i.forEach(function(e,t){a.equals(e,l)&&(o=t)}),o}return t.index}}]).directive("jqyouiDraggable",["ngDragDropService",function(e){return{require:"?jqyouiDroppable",restrict:"A",link:function(n,r,l){var o,d,s,p,c=t(r),u=function(r,u){r?(o=n.$eval(c.attr("jqyoui-draggable")||c.attr("data-jqyoui-draggable"))||{},d=n.$eval(l.jqyouiOptions)||{},c.draggable({disabled:!1}).draggable(d).draggable({start:function(a,r){e.draggableScope=n,s=t(d.helper?r.helper:this).css("z-index"),t(d.helper?r.helper:this).css("z-index",9999),i.startXY=t(this)[o.containment||"offset"](),e.callEventCallback(n,o.onStart,a,r)},stop:function(a,i){t(d.helper?i.helper:this).css("z-index",s),e.callEventCallback(n,o.onStop,a,i)},drag:function(a,t){e.callEventCallback(n,o.onDrag,a,t)}})):c.draggable({disabled:!0}),p&&a.isDefined(r)&&(a.equals(l.drag,"true")||a.equals(l.drag,"false"))&&(p(),p=null)};p=n.$watch(function(){return n.$eval(l.drag)},u),u(),c.on("$destroy",function(){c.draggable({disabled:!0}).draggable("destroy")})}}}]).directive("jqyouiDroppable",["ngDragDropService","$q",function(e,n){return{restrict:"A",priority:1,link:function(i,r,l){var o,d,s,p=t(r),c=function(r,c){r?(o=i.$eval(t(p).attr("jqyoui-droppable")||t(p).attr("data-jqyoui-droppable"))||{},d=i.$eval(l.jqyouiOptions)||{},p.droppable({disabled:!1}).droppable(d).droppable({over:function(a,t){e.callEventCallback(i,o.onOver,a,t)},out:function(a,t){e.callEventCallback(i,o.onOut,a,t)},drop:function(r,s){var p=null;p=o.beforeDrop?e.callEventCallback(i,o.beforeDrop,r,s):function(){var e=n.defer();return e.resolve(),e.promise}(),p.then(a.bind(this,function(){t(s.draggable).ngattr("ng-model")&&l.ngModel?(e.droppableScope=i,e.invokeDrop(t(s.draggable),t(this),r,s)):e.callEventCallback(i,o.onDrop,r,s)}),function(){s.draggable.animate({left:"",top:""},d.revertDuration||0)})}})):p.droppable({disabled:!0}),s&&a.isDefined(r)&&(a.equals(l.drop,"true")||a.equals(l.drop,"false"))&&(s(),s=null)};s=i.$watch(function(){return i.$eval(l.drop)},c),c(),p.on("$destroy",function(){p.droppable({disabled:!0}).droppable("destroy")})}}}]);t.fn.ngattr=function(e,a){var t=this[0];return t.getAttribute(e)||t.getAttribute("data-"+e)}}(window,window.angular,window.jQuery);
+angular.module('cfp.loadingBarInterceptor', ['cfp.loadingBar'])
+  .config(['$httpProvider', function ($httpProvider) {
+
+    var interceptor = ['$q', '$cacheFactory', '$timeout', '$rootScope', '$log', 'cfpLoadingBar', function ($q, $cacheFactory, $timeout, $rootScope, $log, cfpLoadingBar) {
+
+      /**
+       * The total number of requests made
+       */
+      var reqsTotal = 0;
+
+      /**
+       * The number of requests completed (either successfully or not)
+       */
+      var reqsCompleted = 0;
+
+      /**
+       * The amount of time spent fetching before showing the loading bar
+       */
+      var latencyThreshold = cfpLoadingBar.latencyThreshold;
+
+      /**
+       * $timeout handle for latencyThreshold
+       */
+      var startTimeout;
+
+
+      /**
+       * calls cfpLoadingBar.complete() which removes the
+       * loading bar from the DOM.
+       */
+      function setComplete() {
+        $timeout.cancel(startTimeout);
+        cfpLoadingBar.complete();
+        reqsCompleted = 0;
+        reqsTotal = 0;
+      }
+
+      /**
+       * Determine if the response has already been cached
+       * @param  {Object}  config the config option from the request
+       * @return {Boolean} retrns true if cached, otherwise false
+       */
+      function isCached(config) {
+        var cache;
+        var defaultCache = $cacheFactory.get('$http');
+        var defaults = $httpProvider.defaults;
+
+        // Choose the proper cache source. Borrowed from angular: $http service
+        if ((config.cache || defaults.cache) && config.cache !== false &&
+          (config.method === 'GET' || config.method === 'JSONP')) {
+            cache = angular.isObject(config.cache) ? config.cache
+              : angular.isObject(defaults.cache) ? defaults.cache
+              : defaultCache;
+        }
+
+        var cached = cache !== undefined ?
+          cache.get(config.url) !== undefined : false;
+
+        if (config.cached !== undefined && cached !== config.cached) {
+          return config.cached;
+        }
+        config.cached = cached;
+        return cached;
+      }
+
+
+      return {
+        'request': function(config) {
+          // Check to make sure this request hasn't already been cached and that
+          // the requester didn't explicitly ask us to ignore this request:
+          if (!config.ignoreLoadingBar && !isCached(config)) {
+            $rootScope.$broadcast('cfpLoadingBar:loading', {url: config.url});
+            if (reqsTotal === 0) {
+              startTimeout = $timeout(function() {
+                cfpLoadingBar.start();
+              }, latencyThreshold);
+            }
+            reqsTotal++;
+            cfpLoadingBar.set(reqsCompleted / reqsTotal);
+          }
+          return config;
+        },
+
+        'response': function(response) {
+          if (!response || !response.config) {
+            $log.error('Broken interceptor detected: Config object not supplied in response:\n https://github.com/chieffancypants/angular-loading-bar/pull/50');
+            return response;
+          }
+
+          if (!response.config.ignoreLoadingBar && !isCached(response.config)) {
+            reqsCompleted++;
+            $rootScope.$broadcast('cfpLoadingBar:loaded', {url: response.config.url, result: response});
+            if (reqsCompleted >= reqsTotal) {
+              setComplete();
+            } else {
+              cfpLoadingBar.set(reqsCompleted / reqsTotal);
+            }
+          }
+          return response;
+        },
+
+        'responseError': function(rejection) {
+          if (!rejection || !rejection.config) {
+            $log.error('Broken interceptor detected: Config object not supplied in rejection:\n https://github.com/chieffancypants/angular-loading-bar/pull/50');
+            return $q.reject(rejection);
+          }
+
+          if (!rejection.config.ignoreLoadingBar && !isCached(rejection.config)) {
+            reqsCompleted++;
+            $rootScope.$broadcast('cfpLoadingBar:loaded', {url: rejection.config.url, result: rejection});
+            if (reqsCompleted >= reqsTotal) {
+              setComplete();
+            } else {
+              cfpLoadingBar.set(reqsCompleted / reqsTotal);
+            }
+          }
+          return $q.reject(rejection);
+        }
+      };
+    }];
+
+    $httpProvider.interceptors.push(interceptor);
+  }]);
+
+
+/**
+ * Loading Bar
+ *
+ * This service handles adding and removing the actual element in the DOM.
+ * Generally, best practices for DOM manipulation is to take place in a
+ * directive, but because the element itself is injected in the DOM only upon
+ * XHR requests, and it's likely needed on every view, the best option is to
+ * use a service.
+ */
+angular.module('cfp.loadingBar', [])
+  .provider('cfpLoadingBar', function() {
+
+    this.autoIncrement = true;
+    this.includeSpinner = true;
+    this.includeBar = true;
+    this.latencyThreshold = 100;
+    this.startSize = 0.02;
+    this.parentSelector = 'body';
+    this.spinnerTemplate = '<div id="loading-bar-spinner"><div class="spinner-icon"></div></div>';
+    this.loadingBarTemplate = '<div id="loading-bar"><div class="bar"><div class="peg"></div></div></div>';
+
+    this.$get = ['$injector', '$document', '$timeout', '$rootScope', function ($injector, $document, $timeout, $rootScope) {
+      var $animate;
+      var $parentSelector = this.parentSelector,
+        loadingBarContainer = angular.element(this.loadingBarTemplate),
+        loadingBar = loadingBarContainer.find('div').eq(0),
+        spinner = angular.element(this.spinnerTemplate);
+
+      var incTimeout,
+        completeTimeout,
+        started = false,
+        status = 0;
+
+      var autoIncrement = this.autoIncrement;
+      var includeSpinner = this.includeSpinner;
+      var includeBar = this.includeBar;
+      var startSize = this.startSize;
+
+      /**
+       * Inserts the loading bar element into the dom, and sets it to 2%
+       */
+      function _start() {
+        if (!$animate) {
+          $animate = $injector.get('$animate');
+        }
+
+        var $parent = $document.find($parentSelector).eq(0);
+        $timeout.cancel(completeTimeout);
+
+        // do not continually broadcast the started event:
+        if (started) {
+          return;
+        }
+
+        $rootScope.$broadcast('cfpLoadingBar:started');
+        started = true;
+
+        if (includeBar) {
+          $animate.enter(loadingBarContainer, $parent, angular.element($parent[0].lastChild));
+        }
+
+        if (includeSpinner) {
+          $animate.enter(spinner, $parent, angular.element($parent[0].lastChild));
+        }
+
+        _set(startSize);
+      }
+
+      /**
+       * Set the loading bar's width to a certain percent.
+       *
+       * @param n any value between 0 and 1
+       */
+      function _set(n) {
+        if (!started) {
+          return;
+        }
+        var pct = (n * 100) + '%';
+        loadingBar.css('width', pct);
+        status = n;
+
+        // increment loadingbar to give the illusion that there is always
+        // progress but make sure to cancel the previous timeouts so we don't
+        // have multiple incs running at the same time.
+        if (autoIncrement) {
+          $timeout.cancel(incTimeout);
+          incTimeout = $timeout(function() {
+            _inc();
+          }, 250);
+        }
+      }
+
+      /**
+       * Increments the loading bar by a random amount
+       * but slows down as it progresses
+       */
+      function _inc() {
+        if (_status() >= 1) {
+          return;
+        }
+
+        var rnd = 0;
+
+        // TODO: do this mathmatically instead of through conditions
+
+        var stat = _status();
+        if (stat >= 0 && stat < 0.25) {
+          // Start out between 3 - 6% increments
+          rnd = (Math.random() * (5 - 3 + 1) + 3) / 100;
+        } else if (stat >= 0.25 && stat < 0.65) {
+          // increment between 0 - 3%
+          rnd = (Math.random() * 3) / 100;
+        } else if (stat >= 0.65 && stat < 0.9) {
+          // increment between 0 - 2%
+          rnd = (Math.random() * 2) / 100;
+        } else if (stat >= 0.9 && stat < 0.99) {
+          // finally, increment it .5 %
+          rnd = 0.005;
+        } else {
+          // after 99%, don't increment:
+          rnd = 0;
+        }
+
+        var pct = _status() + rnd;
+        _set(pct);
+      }
+
+      function _status() {
+        return status;
+      }
+
+      function _completeAnimation() {
+        status = 0;
+        started = false;
+      }
+
+      function _complete() {
+        if (!$animate) {
+          $animate = $injector.get('$animate');
+        }
+
+        $rootScope.$broadcast('cfpLoadingBar:completed');
+        _set(1);
+
+        $timeout.cancel(completeTimeout);
+
+        // Attempt to aggregate any start/complete calls within 500ms:
+        completeTimeout = $timeout(function() {
+          var promise = $animate.leave(loadingBarContainer, _completeAnimation);
+          if (promise && promise.then) {
+            promise.then(_completeAnimation);
+          }
+          $animate.leave(spinner);
+        }, 500);
+      }
+
+      return {
+        start            : _start,
+        set              : _set,
+        status           : _status,
+        inc              : _inc,
+        complete         : _complete,
+        autoIncrement    : this.autoIncrement,
+        includeSpinner   : this.includeSpinner,
+        latencyThreshold : this.latencyThreshold,
+        parentSelector   : this.parentSelector,
+        startSize        : this.startSize
+      };
+
+
+    }];     //
+  });       // wtf javascript. srsly
+})();       //
+
+/*
+	Copyright Kamil Pękala http://github.com/kamilkp
+	angular-sortable-view v0.0.13 2015/01/13
+*/
+!function(a,b){"use strict";function c(a){if(!("clientX"in a||"clientY"in a)){var b=a.touches||a.originalEvent.touches;b&&b.length&&(a.clientX=b[0].clientX,a.clientY=b[0].clientY),a.preventDefault()}}function d(a){if(a=a[0],a.previousElementSibling)return b.element(a.previousElementSibling);for(var c=a.previousSibling;null!=c&&1!=c.nodeType;)c=c.previousSibling;return b.element(c)}function e(a,b){var c=d(a);c.length>0?c.after(b):a.parent().prepend(b)}function f(a,c){return a instanceof b.element&&(a=a[0]),null!==i?a[i](c):void 0}var g=b.module("angular-sortable-view",[]);g.directive("svRoot",[function(){function a(a,b,c){return c?a.x-b.x<0:a.y-b.y<0}function b(a){return g[a]}function c(a){delete g[a]}var d,g=Object.create(null);return{restrict:"A",controller:["$scope","$attrs","$interpolate","$parse",function(h,i,j,k){var l=j(i.svRoot)(h)||h.$id;g[l]||(g[l]=[]);var m,n,o,p,q,r,s=!1,t=k(i.svOnSort);i.svOnStart=i.$$element[0].attributes["sv-on-start"],i.svOnStart=i.svOnStart&&i.svOnStart.value,i.svOnStop=i.$$element[0].attributes["sv-on-stop"],i.svOnStop=i.svOnStop&&i.svOnStop.value;var u=k(i.svOnStart),v=k(i.svOnStop);if(this.sortingInProgress=function(){return d},i.svGrid){if(s="true"===i.svGrid?!0:"false"===i.svGrid?!1:null,null===s)throw"Invalid value of sv-grid attribute"}else h.$watchCollection(function(){return b(l)},function(a){s=!1;var b=a.filter(function(a){return!a.container}).map(function(a){return{part:a.getPart().id,y:a.element[0].getBoundingClientRect().top}}),c=Object.create(null);b.forEach(function(a){c[a.part]?c[a.part].push(a.y):c[a.part]=[a.y]}),Object.keys(c).forEach(function(a){c[a].sort(),c[a].forEach(function(b,d){d<c[a].length-1&&b>0&&b===c[a][d+1]&&(s=!0)})})});this.$moveUpdate=function(c,g,i,j,k,t,v){var w=i[0].getBoundingClientRect();"element"===c.tolerance&&(g={x:~~(w.left+w.width/2),y:~~(w.top+w.height/2)}),d=!0,m=[],n||(k?(n=k.clone(),n.removeClass("ng-hide")):(n=j.clone(),n.addClass("sv-visibility-hidden"),n.addClass("sv-placeholder"),n.css({height:w.height+"px",width:w.width+"px"})),j.after(n),j.addClass("ng-hide"),q=j,o=c,p=i,u(h,{$helper:{element:p},$part:t.model(t.scope),$index:v,$item:t.model(t.scope)[v]}),h.$root&&h.$root.$$phase||h.$apply()),p[0].reposition({x:g.x+document.body.scrollLeft-g.offset.x*w.width,y:g.y+document.body.scrollTop-g.offset.y*w.height}),b(l).forEach(function(b){if(null==c.containment||f(b.element,c.containment)||f(b.element,c.containment+" *")){var d=b.element[0].getBoundingClientRect(),e={x:~~(d.left+d.width/2),y:~~(d.top+d.height/2)};b.container||!b.element[0].scrollHeight&&!b.element[0].scrollWidth||m.push({element:b.element,q:(e.x-g.x)*(e.x-g.x)+(e.y-g.y)*(e.y-g.y),view:b.getPart(),targetIndex:b.getIndex(),after:a(e,g,s)}),b.container&&!b.element[0].querySelector("[sv-element]:not(.sv-placeholder):not(.sv-source)")&&m.push({element:b.element,q:(e.x-g.x)*(e.x-g.x)+(e.y-g.y)*(e.y-g.y),view:b.getPart(),targetIndex:0,container:!0})}});var x=n[0].getBoundingClientRect(),y={x:~~(x.left+x.width/2),y:~~(x.top+x.height/2)};m.push({q:(y.x-g.x)*(y.x-g.x)+(y.y-g.y)*(y.y-g.y),element:n,placeholder:!0}),m.sort(function(a,b){return a.q-b.q}),m.forEach(function(a,b){0!==b||a.placeholder||a.container?0===b&&a.container?(r=a,a.element.append(n)):a.element.removeClass("sv-candidate"):(r=a,a.element.addClass("sv-candidate"),a.after?a.element.after(n):e(a.element,n))})},this.$drop=function(a,b,c){function e(){if(d=!1,n.remove(),p.remove(),q.removeClass("ng-hide"),m=void 0,n=void 0,c=void 0,p=void 0,q=void 0,v(h,{$part:a.model(a.scope),$index:b,$item:a.model(a.scope)[b]}),r){r.element.removeClass("sv-candidate");var e=a.model(a.scope).splice(b,1),f=r.targetIndex;r.view===a&&r.targetIndex>b&&f--,r.after&&f++,r.view.model(r.view.scope).splice(f,0,e[0]),(r.view!==a||b!==f)&&t(h,{$partTo:r.view.model(r.view.scope),$partFrom:a.model(a.scope),$item:e[0],$indexTo:f,$indexFrom:b})}r=void 0,h.$root&&h.$root.$$phase||h.$apply()}if(n)if(c.revert){var f=n[0].getBoundingClientRect(),g=p[0].getBoundingClientRect(),i=Math.sqrt(Math.pow(g.top-f.top,2)+Math.pow(g.left-f.left,2)),j=+c.revert*i/200;j=Math.min(j,+c.revert),["-webkit-","-moz-","-ms-","-o-",""].forEach(function(a){"undefined"!=typeof p[0].style[a+"transition"]&&(p[0].style[a+"transition"]="all "+j+"ms ease")}),setTimeout(e,j),p.css({top:f.top+document.body.scrollTop+"px",left:f.left+document.body.scrollLeft+"px"})}else e()},this.addToSortableElements=function(a){b(l).push(a)},this.removeFromSortableElements=function(a){var d=b(l),e=d.indexOf(a);e>-1&&(d.splice(e,1),0===d.length&&c(l))}}]}}]),g.directive("svPart",["$parse",function(a){return{restrict:"A",require:"^svRoot",controller:["$scope",function(a){a.$ctrl=this,this.getPart=function(){return a.part},this.$drop=function(b,c){a.$sortableRoot.$drop(a.part,b,c)}}],scope:!0,link:function(b,c,d,e){if(!d.svPart)throw new Error("no model provided");var f=a(d.svPart);if(!f.assign)throw new Error("model not assignable");b.part={id:b.$id,element:c,model:f,scope:b},b.$sortableRoot=e;var g={element:c,getPart:b.$ctrl.getPart,container:!0};e.addToSortableElements(g),b.$on("$destroy",function(){e.removeFromSortableElements(g)})}}}]),g.directive("svElement",["$parse",function(a){return{restrict:"A",require:["^svPart","^svRoot"],controller:["$scope",function(a){a.$ctrl=this}],link:function(d,e,f,g){function h(h){function i(a){c(a),n||(e.parent().prepend(q),n=!0),g[1].$moveUpdate(k,{x:a.clientX,y:a.clientY,offset:t},q,e,m,g[0].getPart(),d.$index)}if(c(h),!g[1].sortingInProgress()&&(0==h.button||"mousedown"!==h.type)){n=!1;var k=a(f.svElement)(d);if(k=b.extend({},{tolerance:"pointer",revert:200,containment:"html"},k),k.containment)var p=j.call(e,k.containment)[0].getBoundingClientRect();var q,r=e,s=e[0].getBoundingClientRect();l||(l=g[0].helper),m||(m=g[0].placeholder),l?(q=l.clone(),q.removeClass("ng-hide"),q.css({left:s.left+document.body.scrollLeft+"px",top:s.top+document.body.scrollTop+"px"}),r.addClass("sv-visibility-hidden")):(q=r.clone(),q.addClass("sv-helper").css({left:s.left+document.body.scrollLeft+"px",top:s.top+document.body.scrollTop+"px",width:s.width+"px"})),q[0].reposition=function(a){var b=a.x,c=a.y,d=q[0].getBoundingClientRect(),e=document.body;p&&(c<p.top+e.scrollTop&&(c=p.top+e.scrollTop),c+d.height>p.top+e.scrollTop+p.height&&(c=p.top+e.scrollTop+p.height-d.height),b<p.left+e.scrollLeft&&(b=p.left+e.scrollLeft),b+d.width>p.left+e.scrollLeft+p.width&&(b=p.left+e.scrollLeft+p.width-d.width)),this.style.left=b-e.scrollLeft+"px",this.style.top=c-e.scrollTop+"px"};var t={x:(h.clientX-s.left)/s.width,y:(h.clientY-s.top)/s.height};o.addClass("sv-sorting-in-progress"),o.on("mousemove touchmove",i).on("mouseup touchend touchcancel",function u(){o.off("mousemove touchmove",i),o.off("mouseup touchend",u),o.removeClass("sv-sorting-in-progress"),n&&g[0].$drop(d.$index,k),e.removeClass("sv-visibility-hidden")})}}var i={element:e,getPart:g[0].getPart,getIndex:function(){return d.$index}};g[1].addToSortableElements(i),d.$on("$destroy",function(){g[1].removeFromSortableElements(i)});var k=e;k.on("mousedown touchstart",h),d.$watch("$ctrl.handle",function(a){a&&(k.off("mousedown touchstart",h),k=a,k.on("mousedown touchstart",h))});var l;d.$watch("$ctrl.helper",function(a){a&&(l=a)});var m;d.$watch("$ctrl.placeholder",function(a){a&&(m=a)});var n,o=(b.element(document.body),b.element(document.documentElement))}}}]),g.directive("svHandle",function(){return{require:"?^svElement",link:function(a,b,c,d){d&&(d.handle=b.add(d.handle))}}}),g.directive("svHelper",function(){return{require:["?^svPart","?^svElement"],link:function(a,b,c,d){b.addClass("sv-helper").addClass("ng-hide"),d[1]?d[1].helper=b:d[0]&&(d[0].helper=b)}}}),g.directive("svPlaceholder",function(){return{require:["?^svPart","?^svElement"],link:function(a,b,c,d){b.addClass("sv-placeholder").addClass("ng-hide"),d[1]?d[1].placeholder=b:d[0]&&(d[0].placeholder=b)}}}),b.element(document.head).append(["<style>.sv-helper{position: fixed !important;z-index: 99999;margin: 0 !important;}.sv-candidate{}.sv-placeholder{}.sv-sorting-in-progress{-webkit-user-select: none;-moz-user-select: none;-ms-user-select: none;user-select: none;}.sv-visibility-hidden{visibility: hidden !important;opacity: 0 !important;}</style>"].join(""));var h=document.documentElement,i=h.matches?"matches":h.matchesSelector?"matchesSelector":h.webkitMatches?"webkitMatches":h.webkitMatchesSelector?"webkitMatchesSelector":h.msMatches?"msMatches":h.msMatchesSelector?"msMatchesSelector":h.mozMatches?"mozMatches":h.mozMatchesSelector?"mozMatchesSelector":null;if(null==i)throw"This browser doesn't support the HTMLElement.matches method";var j=b.element.prototype.closest||function(a){for(var c=this[0].parentNode;c!==document.documentElement&&!c[i](a);)c=c.parentNode;return c[i](a)?b.element(c):b.element()};"function"!=typeof b.element.prototype.add&&(b.element.prototype.add=function(a){var c,d=b.element();for(a=b.element(a),c=0;c<this.length;c++)d.push(this[c]);for(c=0;c<a.length;c++)d.push(a[c]);return d})}(window,window.angular);
 "use strict";
 /*!
  * jquery-confirm v1.5.1 (http://craftpip.github.io/jquery-confirm/)
