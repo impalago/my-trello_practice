@@ -427,4 +427,3 @@ angular.module('app').factory('cardListFactory', ["$http", "$routeParams", funct
 
     return cardList;
 }]);
-//# sourceMappingURL=app.js.map

@@ -1,4 +1,5 @@
 var elixir = require('laravel-elixir');
+require('laravel-elixir-ng-annotate');
 
 /*
  |--------------------------------------------------------------------------
@@ -15,7 +16,7 @@ elixir.config.sourcemaps = true;
 
 elixir(function(mix) {
 
-    mix.scripts([
+    var dependenciesScripts = [
         "/jquery/dist/jquery.min.js",
         "/bootstrap/dist/js/bootstrap.min.js",
         "/bootstrap-material-design/dist/js/material.min.js",
@@ -29,21 +30,33 @@ elixir(function(mix) {
         "/angular-bootstrap-colorpicker/js/bootstrap-colorpicker-module.min.js",
         "/angular-loading-bar/src/loading-bar.js",
         "/angular-sortable-view/src/angular-sortable-view.min.js",
-        "/jquery-confirm/js/jquery-confirm.min.js"
-    ], "public/js/dependencies.js", "node_modules")
-    .scriptsIn("resources/assets/js", "public/js/app.js")
+        "/jquery-confirm/js/jquery-confirm.min.js",
+        "/pnotify/dist/pnotify.js",
+        "/pnotify/dist/pnotify.desktop.js"
+    ];
 
-    .styles([
+    var appScripts = [
+        "/resources/assets/js/**/*.js"
+    ];
+
+    mix.scripts(dependenciesScripts, "public/js/dependencies.js", "node_modules");
+    mix.annotate(appScripts);
+    mix.scripts('annotated.js','public/js/app.js', 'public/js/');
+
+    mix.styles([
         "/bootstrap/dist/css/bootstrap.min.css",
         "/bootstrap-material-design/dist/css/bootstrap-material-design.min.css",
         "/bootstrap-material-design/dist/css/ripples.min.css",
         "/angular-ui-bootstrap/dist/ui-bootstrap-csp.css",
         "/angular-bootstrap-colorpicker/css/colorpicker.min.css",
         "/angular-loading-bar/src/loading-bar.css",
-        "/jquery-confirm/css/jquery-confirm.css"
+        "/jquery-confirm/css/jquery-confirm.css",
+        "/pnotify/dist/pnotify.css",
+        "/pnotify/dist/pnotify.brighttheme.css"
     ], 'public/css/dependencies.css', 'node_modules')
     .sass('app.scss')
     .browserSync({
         proxy: 'trello.dev'
     });
+
 });

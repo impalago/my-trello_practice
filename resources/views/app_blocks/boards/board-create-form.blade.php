@@ -4,7 +4,7 @@
     </div>
     <div class="modal-body">
         <div class="form-group">
-            <input type="text" class="form-control" placeholder="Name" data-ng-model="board.name" ng-value="boardName" required>
+            <input type="text" class="form-control" placeholder="Name" data-ng-model="board.name" ng-value="boardName" required autofocus>
         </div>
     </div>
 

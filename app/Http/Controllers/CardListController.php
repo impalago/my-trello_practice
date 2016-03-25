@@ -17,7 +17,7 @@ class CardListController extends Controller
      */
     public function index(Request $request)
     {
-        $cardList = CardList::where('board_id', $request->board_id)->orderBy('id', 'DESC')->get();
+        $cardList = CardList::where('board_id', $request->board_id)->orderBy('sorting', 'asc')->get();
         return response()->json($cardList);
     }
 
@@ -34,7 +34,7 @@ class CardListController extends Controller
     /**
      * Store a newly created resource in storage.
      *
-     * @param  \Illuminate\Http\Request  $request
+     * @param  \Illuminate\Http\Request $request
      * @return \Illuminate\Http\Response
      */
     public function store(Request $request)
@@ -49,7 +49,7 @@ class CardListController extends Controller
     /**
      * Display the specified resource.
      *
-     * @param  int  $id
+     * @param  int $id
      * @return \Illuminate\Http\Response
      */
     public function show($id)
@@ -60,7 +60,7 @@ class CardListController extends Controller
     /**
      * Show the form for editing the specified resource.
      *
-     * @param  int  $id
+     * @param  int $id
      * @return \Illuminate\Http\Response
      */
     public function edit($id)
@@ -72,8 +72,8 @@ class CardListController extends Controller
     /**
      * Update the specified resource in storage.
      *
-     * @param  \Illuminate\Http\Request  $request
-     * @param  int  $id
+     * @param  \Illuminate\Http\Request $request
+     * @param  int $id
      * @return \Illuminate\Http\Response
      */
     public function update(Request $request, $id)
@@ -87,11 +87,33 @@ class CardListController extends Controller
     /**
      * Remove the specified resource from storage.
      *
-     * @param  int  $id
+     * @param  int $id
      * @return \Illuminate\Http\Response
      */
     public function destroy($id)
     {
         return CardList::destroy($id);
+    }
+
+    /**
+     * Sorting update value in card list
+     *
+     * @param  int $id
+     * @return \Illuminate\Http\Response
+     */
+    public function cardListSorting(Request $request)
+    {
+
+        if(!count($request->json())){
+            return 'none object';
+        }
+
+        dump($request->json());
+
+        foreach ($request->json() as $key => $item) {
+            CardList::where('id', $item['id'])->update(['sorting' => $key]);
+        }
+
+        return 'ok';
     }
 }

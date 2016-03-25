@@ -1,4 +1,4 @@
-angular.module('app').config(function($routeProvider) {
+angular.module('app').config(["$routeProvider", function($routeProvider) {
 
     $routeProvider
 
@@ -12,4 +12,4 @@ angular.module('app').config(function($routeProvider) {
             controller: 'boardItemCtrl'
         });
 
-});
+}]);

@@ -1,3 +1,5 @@
+/* @ngInject */
+
 angular.module('app').controller('boardsCtrl', function($scope, boardsFactory, $uibModal, cfpLoadingBar) {
 
     $scope.init = function() {
@@ -89,6 +91,12 @@ angular.module('app').controller('boardsCtrl', function($scope, boardsFactory, $
             confirm: function(){
                 boardsFactory.deleteBoard(id)
                     .then(function(rec) {
+                        new PNotify({
+                            title: 'Info',
+                            text: 'Board successfully removed',
+                            type: 'info',
+                            delay: 3000
+                        });
                         $scope.allBoards();
                     });
             }

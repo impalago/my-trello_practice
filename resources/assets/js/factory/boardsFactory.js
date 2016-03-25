@@ -1,73 +1,35 @@
-angular.module('app').factory('boardsFactory', function($http, $q) {
+/* @ngInject */
+
+angular.module('app').factory('boardsFactory', function($http) {
 
     var board = this;
     this.boardList = {};
 
     board.getBoards = function() {
-        var defer = $q.defer();
-
-        $http.get('/api/boards')
-            .success(function(rec) {
-                board.boardList = rec;
-                defer.resolve(rec);
-            }).error(function(err, status) {
-                defer.reject(err);
+        return $http.get('/api/boards')
+            .then(function(rec) {
+                board.boardList = rec.data;
+                return rec.data;
             });
-
-        return defer.promise;
     };
 
     board.createBoard = function(board) {
-        var defer = $q.defer();
-        $http.post('/api/boards', board)
-            .success(function(rec) {
-                defer.resolve(rec);
-            })
-            .error(function(err, status) {
-                defer.reject(err);
-            });
-
-        return defer.promise;
+        return $http.post('/api/boards', board);
     };
 
     board.editBoard = function(id) {
-        var defer = $q.defer();
-        $http.get('/api/boards/' + id + '/edit')
-            .success(function(rec) {
-                defer.resolve(rec);
-            })
-            .error(function(err, status) {
-                defer.reject(err);
+        return $http.get('/api/boards/' + id + '/edit')
+            .then(function(rec) {
+                return rec.data;
             });
-
-        return defer.promise;
     };
 
     board.updateBoard = function(id, board) {
-        var defer = $q.defer();
-        $http.put('/api/boards/' + id, board)
-            .success(function(rec) {
-                defer.resolve(rec);
-            })
-            .error(function(err, status) {
-                defer.reject(err);
-            });
-
-        return defer.promise;
+        return $http.put('/api/boards/' + id, board);
     };
 
     board.deleteBoard = function(id) {
-        var defer = $q.defer();
-
-        $http.delete('/api/boards/' + id)
-            .success(function(rec) {
-                defer.resolve(rec);
-            })
-            .error(function(err, status) {
-                defer.reject(err);
-            });
-
-        return defer.promise;
+        return $http.delete('/api/boards/' + id)
     };
 
     return board;

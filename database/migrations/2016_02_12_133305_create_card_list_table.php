@@ -17,11 +17,12 @@ class CreateCardListTable extends Migration
             $table->integer('board_id')->unsigned();
             $table->string('name');
             $table->string('color');
+            $table->integer('sorting');
             $table->timestamps();
         });
 
         Schema::table('card_list', function (Blueprint $table) {
-            $table->foreign('board_id')->references('id')->on('boards');
+            $table->foreign('board_id')->references('id')->on('boards')->onDelete('cascade');
         });
     }
 

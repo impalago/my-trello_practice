@@ -15,13 +15,15 @@ class CreateCardsTable extends Migration
         Schema::create('cards', function (Blueprint $table) {
             $table->increments('id');
             $table->integer('card_list_id')->unsigned();
+            $table->integer('user_id')->unsigned();
             $table->string('name');
             $table->text('description');
             $table->timestamps();
         });
 
         Schema::table('cards', function (Blueprint $table) {
-            $table->foreign('card_list_id')->references('id')->on('card_list');
+            $table->foreign('card_list_id')->references('id')->on('card_list')->onDelete('cascade');
+            $table->foreign('user_id')->references('id')->on('users');
         });
     }
 

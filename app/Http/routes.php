@@ -28,7 +28,13 @@ Route::group(['middleware' => ['web', 'auth'], 'prefix' => 'api'], function () {
     Route::resource('boards', 'BoardsController', ['except' => [
         'create'
     ]]);
+
     Route::resource('card-list', 'CardListController', ['except' => [
+        'create'
+    ]]);
+    Route::post('card-list-sorting', 'CardListController@cardListSorting');
+
+    Route::resource('card', 'CardsController', ['except' => [
         'create'
     ]]);
 
@@ -52,5 +58,9 @@ Route::group(['middleware' => ['web', 'auth'], 'prefix' => 'api'], function () {
         return view('app_blocks/card-list.card-list-form');
     });
 
+    //Card
+    Route::get('card-create-form', function() {
+        return view('app_blocks/card.card-create-form');
+    });
 
 });

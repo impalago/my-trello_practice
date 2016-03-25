@@ -1,3 +1,5 @@
+/* @ngInject */
+
 angular.module('app').controller('cardListCtrl', function($scope, $uibModal, $routeParams, cardListFactory, cfpLoadingBar) {
 
     var $self = this;
@@ -16,14 +18,26 @@ angular.module('app').controller('cardListCtrl', function($scope, $uibModal, $ro
         $scope.fakeIntro = true;
     };
 
+    $scope.printArray = function(arr){
+        return '[' + arr.toString().replace(/([^,]+)/g, '"$1"').replace(/,/g, ', ') + ']';
+    };
+
     $scope.cardList = function() {
         cardListFactory.getAllCardList()
             .then(function(rec) {
                 $self.allCardList = rec;
+                $scope.allCardList = rec;
                 $scope.loadComplete();
                 $scope.fakeIntro = false;
             });
     };
+
+    $scope.$watchCollection('allCardList', function(newArr, oldArr) {
+        cardListFactory.watchAllCardList(newArr)
+            .then(function() {
+
+            });
+    });
 
     $self.createCardList = function() {
         var modalInstance = $uibModal.open({
@@ -93,6 +107,12 @@ angular.module('app').controller('cardListCtrl', function($scope, $uibModal, $ro
             confirm: function(){
                 cardListFactory.deleteCardList(id)
                     .then(function(rec) {
+                        new PNotify({
+                            title: 'Info',
+                            text: 'List of cards successfully removed',
+                            type: 'info',
+                            delay: 3000
+                        });
                         $scope.cardList();
                     });
             }

@@ -21,8 +21,8 @@ class CreateCommentsTable extends Migration
         });
 
         Schema::table('comments', function (Blueprint $table) {
-            $table->foreign('user_id')->references('id')->on('users');
-            $table->foreign('card_id')->references('id')->on('cards');
+            $table->foreign('user_id')->references('id')->on('users')->onDelete('cascade');
+            $table->foreign('card_id')->references('id')->on('cards')->onDelete('cascade');
         });
     }
 

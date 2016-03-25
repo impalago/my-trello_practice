@@ -1,74 +1,43 @@
-angular.module('app').factory('cardListFactory', function($http, $q, $routeParams) {
+/* @ngInject */
+
+angular.module('app').factory('cardListFactory', function($http, $routeParams) {
     var cardList = {};
 
     cardList.getAllCardList = function() {
-        var defer = $q.defer();
-        $http.get('/api/card-list', {
-            params: {
-                board_id: $routeParams.id
-            }
-        })
-            .success(function(rec) {
-                defer.resolve(rec);
+        return $http.get('/api/card-list', {
+                params: {
+                    board_id: $routeParams.id
+                }
             })
-            .error(function(err, status) {
-                defer.reject(err);
+            .then(function (rec) {
+                return rec.data;
             });
+    };
 
-        return defer.promise;
+    cardList.watchAllCardList = function(newArr) {
+        return $http.post('/api/card-list-sorting', newArr)
+            .then(function(rec) {
+                return rec.data;
+            });
     };
 
     cardList.createCardList = function(cardList) {
-        var defer = $q.defer();
-        $http.post('/api/card-list', cardList)
-            .success(function(rec) {
-                defer.resolve(rec);
-            })
-            .error(function(err, status) {
-                defer.reject(err);
-            });
-
-        return defer.promise;
+        return $http.post('/api/card-list', cardList);
     };
 
     cardList.editCardList = function(id) {
-        var defer = $q.defer();
-        $http.get('/api/card-list/' + id + '/edit')
-            .success(function(rec) {
-                defer.resolve(rec);
-            })
-            .error(function(err, status) {
-                defer.reject(err);
+        return $http.get('/api/card-list/' + id + '/edit')
+            .then(function(rec) {
+                return rec.data;
             });
-
-        return defer.promise;
     };
 
     cardList.updateCardList = function(id, cardList) {
-        var defer = $q.defer();
-        $http.put('/api/card-list/' + id, cardList)
-            .success(function(rec) {
-                defer.resolve(rec);
-            })
-            .error(function(err, status) {
-                defer.reject(err);
-            });
-
-        return defer.promise;
+        return $http.put('/api/card-list/' + id, cardList)
     };
 
     cardList.deleteCardList = function(id) {
-        var defer = $q.defer();
-
-        $http.delete('/api/card-list/' + id)
-            .success(function(rec) {
-                defer.resolve(rec);
-            })
-            .error(function(err, status) {
-                defer.reject(err);
-            });
-
-        return defer.promise;
+        return $http.delete('/api/card-list/' + id)
     };
 
     return cardList;
